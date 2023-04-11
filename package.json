@@ -1,0 +1,19 @@
+{
+  "name": "wee-trade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SirrorsMoore1975/WEE-Trade.git"
+  },
+  "author": "@SirrorsMoore1975",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirrorsMoore1975/WEE-Trade/issues"
+  },
+  "homepage": "https://github.com/SirrorsMoore1975/WEE-Trade#readme"
+}
