@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/SirrorsMoore1975/WEE-Trade/issues"
   },
-  "homepage": "https://github.com/SirrorsMoore1975/WEE-Trade#readme"
+  "homepage": "https://github.com/SirrorsMoore1975/WEE-Trade#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }

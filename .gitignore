@@ -107,4 +107,3 @@ dist
 
 # custom
 .gitignore
-package.json
