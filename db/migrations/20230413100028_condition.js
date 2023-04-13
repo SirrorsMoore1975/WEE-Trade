@@ -3,9 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = async function(knex) {
-  return await knex.schema.createTable("component_categories", function (table) {
+  return await knex.schema.createTable("condition", function(table){
     table.increments("id").primary();
-    table.string("categories",64).unique();
+    table.string("condition",64).unique();
   })
 };
 
@@ -14,6 +14,6 @@ exports.up = async function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = async function(knex) {
-    return await knex.schema.dropTable("component_categories");
-  ;
+    return await knex.schema.dropTable("condition");
+  
 };

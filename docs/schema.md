@@ -38,14 +38,15 @@ Table condition{
 Table post {
     id int [pk]
     seller_id id [ref: - user.id]
+    img_url varchar(255)
     description varchar(255) [not null]
     
     categories categories [ref:- component_categories.categories]
     condition condition [ref: - condition.condition, not null]
     post_date date [not null]
-    
+    created_at datetime
 
-    cost int 
+    cost numeric(12,2)
 }
 
 Table order {

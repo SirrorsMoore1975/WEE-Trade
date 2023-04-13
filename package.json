@@ -9,8 +9,11 @@
     "make:migration": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "make:seed": "knex seed:make",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "down:migration" : "knex migrate:down",
+    "list:migration": "knex migrate:list"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SirrorsMoore1975/WEE-Trade.git"
