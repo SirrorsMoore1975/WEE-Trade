@@ -10,10 +10,9 @@
     "migrate": "knex migrate:latest",
     "make:seed": "knex seed:make",
     "seed": "knex seed:run",
-    "down:migration" : "knex migrate:down",
+    "down:migration": "knex migrate:down",
     "list:migration": "knex migrate:list"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SirrorsMoore1975/WEE-Trade.git"
@@ -28,6 +27,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "knex": "^2.4.2",
+    "path": "^0.12.7",
     "pg": "^8.10.0"
   },
   "devDependencies": {
