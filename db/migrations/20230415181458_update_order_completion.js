@@ -4,7 +4,8 @@
  */
 exports.up = async function(knex) {
   return await knex.schema.alterTable('order', function (table){
-    table.string("completion",32);
+    table.timestamp("order_created").defaultTo(knex.fn.now());
+    table.timestamp("order_updated").defaultTo(knex.fn.now());
   } )
 };
 
