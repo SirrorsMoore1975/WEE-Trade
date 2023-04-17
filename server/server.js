@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 function setupServer() {
     const app = express();
 
@@ -14,12 +15,21 @@ function setupServer() {
      */
 
 
-    app.get('/api/user', (res,req) => {
+    app.get('/api/user', (req,res) => {
+        
         // should return all user database
+        
+        const query = req.query.limit
+        if(query){
+
+        } else {
+            res.send(200).send
+        }
     });
 
     app.get('/api/user/:idEmailUsername', (req,res) => {
         // return the user details of that given id / Email / Username
+
     })
 
     app.post('/api/user', (req, res)=> {

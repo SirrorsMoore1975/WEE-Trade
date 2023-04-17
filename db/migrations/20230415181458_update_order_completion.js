@@ -15,6 +15,7 @@ exports.up = async function(knex) {
  */
 exports.down = async function(knex) {
   return await knex.schema.alterTable('order', function (table) {
-    table.dropColumn("completion");
+    table.dropColumn("order_created");
+    table.dropColumn("order_updated");
   })
 };
