@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { signInWithEmailAndPassword  } from 'firebase/auth';
 import {auth} from '../../firebase/firebase';
 import {Link} from 'react-router-dom';
-
+import axios from 'axios'
 
 function SignIn(){
     const [email, setEmail] = useState('');
@@ -12,6 +12,16 @@ function SignIn(){
         e.preventDefault();
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         console.log("🤖", userCred);
+         // short hand version is axios.post('./login', {theEmail: email, thePassword: password })
+        // axios({
+        //     method: "post",
+        //     url: "/login",
+        //     data: {theEmail: email, thePassword: password}
+        // }).then((response) => {
+        //     console.log(response);
+        //   }, (error) => {
+        //     console.log(error);
+        //   });
     }
 return (
     <div>
