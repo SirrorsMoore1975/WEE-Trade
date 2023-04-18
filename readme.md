@@ -1,6 +1,6 @@
 ##Objective
--[] client: create axios request for signin, signup to the server
--[] server: send response from server to client
+ - [ ] client: create axios request for signin, signup to the server
+ - [ ] server: send response from server to client
 
 ```javascript
  // short hand version is axios.post('./login', {theEmail: email, thePassword: password })
