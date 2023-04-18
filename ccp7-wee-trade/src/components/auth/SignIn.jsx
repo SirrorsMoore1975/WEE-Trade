@@ -1,31 +1,33 @@
 import React, {useState} from 'react';
-import { signInWithEmailAndPassword  } from 'firebase/auth';
-import {auth} from '../../firebase/firebase';
+// import { signInWithEmailAndPassword  } from 'firebase/auth';
+// import {auth} from '../../firebase/firebase';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+
+import {UserAuth} from '../context/AuthContext'
 
 function SignIn(){
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const { loginUser } = UserAuth();
 
-    const handleSignIn = async (e) => {
-        e.preventDefault();
-        const userCred = await signInWithEmailAndPassword(auth, email, password);
-        console.log("🤖", userCred);
+    // const handleSignIn = async (e) => {
+    //     e.preventDefault();
+    //     const userCred = await signInWithEmailAndPassword(auth, email, password);
+    //     console.log("🤖", userCred);
         
-        // When login you want to see if your user profile or user data or that sort?
-        const data = {email : e.target[0].value }
-        console.log("🏩",data.email);
+    //     // When login you want to see if your user profile or user data or that sort?
+    //     const data = {email : e.target[0].value }
+    //     console.log("🏩",data.email);
         
         
-        axios.get(`/api/user/${data}`)
-        .then((response) => {
-            console.log("😍",response.body);
-          }, (error) => {
-            console.log(error);
-          });
+    //     axios.get(`/api/user/${data}`)
+    //     .then((response) => {
+    //         console.log("😍",response.body);
+    //       }, (error) => {
+    //         console.log(error);
+    //       });
         
         
         
@@ -41,10 +43,10 @@ function SignIn(){
         //   }, (error) => {
         //     console.log(error);
         //   });
-    }
+    
 return (
     <div>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={loginUser}>
         <h1>Please Sign In before use</h1>
             
             <label htmlFor="signin-email">Your Email:</label><br />

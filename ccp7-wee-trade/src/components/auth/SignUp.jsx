@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebase';
 import {Link} from 'react-router-dom';
+
+import {UserAuth} from '../context/AuthContext'
 
 function SignUp(){
     const [email, setEmail] = useState('');
@@ -9,9 +11,11 @@ function SignUp(){
     const [address, setAddress] = useState('');
     const [username, setUsername ] = useState('');
 
+    const {createUser} = UserAuth();
+
 const handleSignUp = async (e) => {
     e.preventDefault();
-    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+    const userCred = await createUser(auth, email, password);
     console.log("🧒",userCred);
 }
 
