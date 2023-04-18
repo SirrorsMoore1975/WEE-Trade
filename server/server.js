@@ -13,24 +13,33 @@ function setupServer() {
     /**
      * /api/user
      */
-
-
-    app.get('/api/user', (req,res) => {
+    app.get('/api/user', (req, res) => {
         
-        // should return all user database
-        
-        const query = req.query.limit
-        if(query){
-
-        } else {
-            res.send(200).send
-        }
-    });
-
-    app.get('/api/user/:idEmailUsername', (req,res) => {
-        // return the user details of that given id / Email / Username
-
     })
+
+
+    app.get('/api/user/:data', (req,res) => {
+        // return the user details of that given id / Email / Username
+        const query = req.params.data;
+        // Payload to test the connection
+        console.log("🤮",query);
+        const testdata = {username: "ABC", email:"DEF", address:"YJK"}
+        if(query){
+            res.status(200).send(testdata);
+        }
+        res.status(200).send("hello from api user");
+    })
+    // app.get('/api/user/:username', (req,res) => {
+        
+        
+        
+    //     //const query = req.query.limit
+    //     if(query){
+
+    //     } else {
+    //         res.send(200).send
+    //     }
+    // });
 
     app.post('/api/user', (req, res)=> {
         // Add new user - check credential
@@ -44,9 +53,13 @@ function setupServer() {
         
     });
 
-    app.post('/api/user/:idEmailUsername/:amendmentType/:amendTo', (req,res) => {
-        // Edit user data depends on amendment Type
-    });
+    
+
+    
+
+    // app.post('/api/user/:idEmailUsername/:amendmentType/:amendTo', (req,res) => {
+    //     // Edit user data depends on amendment Type
+    // });
 
     app.delete('/api/user/:idEmailUsername', (req, res)=> {
         // Delete given user details
