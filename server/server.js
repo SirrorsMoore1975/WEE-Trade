@@ -1,5 +1,5 @@
 const express = require('express');
-
+const db = require('../db/index');
 
 function setupServer() {
     const app = express();
@@ -13,22 +13,22 @@ function setupServer() {
     /**
      * /api/user
      */
-    app.get('/api/user', (req, res) => {
+    // app.get('/api/user/:id', (req, res) => {
         
-    })
+    // })
+    
 
-
-    app.get('/api/user/:data', (req,res) => {
-        // return the user details of that given id / Email / Username
-        const query = req.params.data;
-        // Payload to test the connection
-        console.log("🤮",query);
-        const testdata = {username: "ABC", email:"DEF", address:"YJK"}
-        if(query){
-            res.status(200).send(testdata);
-        }
-        res.status(200).send("hello from api user");
-    })
+    // app.get('/api/user/:data', (req,res) => {
+    //     // return the user details of that given id / Email / Username
+    //     const query = req.params.data;
+    //     // Payload to test the connection
+    //     console.log("🤮",query);
+    //     const testdata = {username: "ABC", email:"DEF", address:"YJK"}
+    //     if(query){
+    //         res.status(200).send(testdata);
+    //     }
+    //     res.status(200).send("hello from api user");
+    // })
     // app.get('/api/user/:username', (req,res) => {
         
         
@@ -70,26 +70,31 @@ function setupServer() {
      * POST Related 
      */
 
-    app.get('/api/post/', (req, res) => {
+    app.get('/api/posts/', async (req, res) => {
         // print full post, should set limit n=100
+        const postfeeds = await db('post')
+        .select('*')
+        .timeout(1500);
     })
 
-    app.get('/api/post/:id', (req, res) => {
+    app.get('/api/posts/:id', (req, res) => {
         // print post id
     })
 
-    app.post('/api/post/', (req,res)=> {
+    app.post('/api/posts/:userid/addpost', (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
     });
 
-    app.post('/api/post/:id/', (req,res)=> {
-        // pending
-    });
 
-    app.delete('/api/post/:id', (req,res) => {
-        // remove post by id
-    })
+
+    // app.post('/api/post/:id/', (req,res)=> {
+    //     // pending
+    // });
+
+    // app.delete('/api/post/:id', (req,res) => {
+    //     // remove post by id
+    // })
 
     /**
      * Order
