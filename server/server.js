@@ -8,14 +8,50 @@ function setupServer() {
 
     app.get('/hello', (req, res) => {
         res.send('🌏world');
-    });
+    }); 
+
+    const validateId = (req, res, next) => {
+        
+        const id = praseInt(req.params.id);
+        if(id){
+            next();
+        } else {
+            res.status(400).send("Invalid id parameter. Expecting number, received "+ typeof req.params.id);
+        }
+    };
 
     /**
-     * /api/user
+     *  user route
      */
-    // app.get('/api/user/:id', (req, res) => {
+    app.get('/api/user', (req, res) => {
+        // should return whole list of user, 
+        // check if limit query used
+        const table = "user"
+        const limit = req.params.limit || 50;
+        const start = req.params.start || 1;
+        const max = limit > 100 ? 100 : limit;
+        // const result = [];
+        const user = {
+            id:"id", username:"username", email:"email", address:"address" 
+        }
         
-    // })
+            // for(let i=start; i<max; i++){
+
+            // }
+        
+        
+            const payload = db('user').select(user).from(table).limit(max);
+      
+        
+        console.log("😄", payload)
+        res.status(200).send(payload)
+    } )
+
+
+    app.get('/api/user/:id', validateId, (req, res) => {
+        const id = praseInt(req.params.id);
+        const result = []
+    })
     
 
     // app.get('/api/user/:data', (req,res) => {
@@ -67,7 +103,7 @@ function setupServer() {
 
 
     /**
-     * POST Related 
+     * Post route
      */
 
     app.get('/api/posts/', async (req, res) => {
@@ -97,7 +133,7 @@ function setupServer() {
     // })
 
     /**
-     * Order
+     * Order route
      */
     app.get('/api/order', (req, res) => {
         // print all orders, limit to 50 by default, can specify limit
