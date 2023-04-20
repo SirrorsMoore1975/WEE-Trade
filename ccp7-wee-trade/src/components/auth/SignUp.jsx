@@ -4,6 +4,7 @@ import { auth } from '../../firebase/firebase';
 import {Link} from 'react-router-dom';
 
 import {UserAuth} from '../context/AuthContext'
+import './SignUp.css';
 
 function SignUp(){
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const handleSignUp = async (e) => {
 
 
 return (
-    <div>
+    <div className="signup">
         <form onSubmit={handleSignUp}>
         <h1>Please Sign Up</h1>
         <label htmlFor="signup-username">Username:</label><br />

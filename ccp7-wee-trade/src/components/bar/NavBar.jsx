@@ -21,16 +21,17 @@ export default function NavBar({ isLoggedIn, username }){
     }
 
     return (
-        <>
-        <div className="Navbar">
-        <h1>Welcome To Wee-Trade</h1>
-        {isLoggedIn ? <><dir>You Are logged in as {username}</dir> </>: <><Link to="/signin">Sign In</Link>{ " " }<Link to="/signup">Sign Up</Link></>}
+        <div><div className="Navbar">
+        <h1 className="greeting">Welcome To Wee-Trade</h1>
+        <div className="loginStatus">
+        
+        {isLoggedIn ? <><dir className="LoggedIn">You Are logged in as {username}</dir><div>Welcome {username}</div> </>: <div className="notLogin"><Link to="/signin">Sign In</Link>{ " | " }<Link to="/signup">Sign Up</Link><div>Welcome Okakusama</div></div>}
         
         
-        {isLoggedIn ? <div>Welcome {username}</div> : <div>Welcome Okakusama</div>}
+        
         
         </div>
-        
-        </>
+        </div>
+        </div>
     )
 }

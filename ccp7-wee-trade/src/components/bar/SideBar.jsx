@@ -13,6 +13,7 @@ export default function SideBar (){
         <hr />
         <div>Add Post</div>
         <div>View Opening Deal</div>
+        <div>Check Your Post</div>
         
         </div>
         </>

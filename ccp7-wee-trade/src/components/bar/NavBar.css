@@ -1,3 +1,18 @@
-#Navbar {
+.Navbar {
+    /* background-color:lightseagreen; */
     background-color:lightseagreen;
+}
+.loginStatus {
+    width:100%;
+    text-align:right;
+}
+    
+.notLogin {
+    text-align:left;
+}
+.LoggedIn {
+    text-align:right;
+}
+.greeting {
+    text-align: left;
 }

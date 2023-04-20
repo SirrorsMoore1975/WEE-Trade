@@ -1,0 +1,12 @@
+.signup {
+    margin: 20px;
+    padding: 20px;
+    background-color:paleturquoise;
+    border-radius: 20px;
+    /* align-items:center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+  }

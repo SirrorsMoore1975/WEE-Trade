@@ -77,7 +77,7 @@ function setupServer() {
     //     }
     // });
 
-    app.post('/api/user', (req, res)=> {
+    app.post('/api/user', async (req, res)=> {
         // Add new user - check credential
         
         console.log("💣",req.body);
@@ -88,15 +88,19 @@ function setupServer() {
         // for(let i =0;i<length; i++){}
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
-     try   {
+     
         const username = req.body.username;
         const email = req.body.email;
         const address = req.body.address;
-        knex('user').insert({username:username, email:email, address:address}).then(() => { knex.select().from('user').then((user) => {
-            res.send(user)
-        })
-    })
-            // const result = await knex('user').insert(inputData);
+        // console.log("😉",typeof username);
+        
+        await knex('user').insert({username:username, email:email, address:address})
+        const user = await knex('user').select(['username','email']);
+        res.status(201).send(user);
+        // .then(() => { knex.select().from('user').then((user) => {
+        //     res.send(user)
+        // })
+         // const result = await knex('user').insert(inputData);
             // const result = await knex.select({username, email, address}).from('user')
             // const result = await knex.query("INSERT INTO weetrade (username")
             // await Promise.all([  
@@ -104,11 +108,9 @@ function setupServer() {
             // knex('user').insert({email:email}),
             // knex('user').insert({address:address})
     //  ])
-    } catch (err) {
-        console.log("🌎",err);
-    }
+    
         
-        res.send({message: "Payload has successfully received", isUploaded: true})
+        // res.send({message: "Payload has successfully received", isUploaded: true})
     });
 
     

@@ -1,8 +1,8 @@
-div.row1 {
+/* div.row1 {
     background-color:lightseagreen;
     width:100%;
-    text-align:left;
-}
+    text-align:right;
+} */
 div.colum1 {
     background-color:goldenrod;
 }
@@ -20,4 +20,30 @@ div.colum1 {
     height: 3em;
     margin: auto;
     width: 100%;
+}
+
+.column2 {
+    /* background-color: #EAF6F6; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .column1 {
+    display: inline-flex;
+    flex-direction: column;
+    flex-grow: 1;
+    float: left;
+    background-color: rgb(227, 227, 227);
+    align-items: stretch;
+    position: sticky;
+    top: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    /* margin: 0;
+    padding: 0; */
+    font-family: sans-serif;
 }

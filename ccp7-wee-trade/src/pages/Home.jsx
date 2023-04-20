@@ -23,15 +23,19 @@ function Home(){
         
         // <div className="table">
             <div className='test'>
-            <div className='row1'>
+             <div className='row1'>
                 <NavBar />
-            </div>
+             </div>
+             <div>
             <div className='row2'>
-                <span className='column1'><SideBar /></span>
+                <div className='column1'><SideBar /></div>
 
-                <span className='column2'><Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post></span>
+                <div className='column2'>
+                    <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
+                    <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
+                    </div>
             </div>
-            
+            </div>
 
 
 

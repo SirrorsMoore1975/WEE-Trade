@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 // import axios from 'axios';
 
 import {UserAuth} from '../context/AuthContext'
+import './Signin.css';
 
 function SignIn(){
     
@@ -45,7 +46,7 @@ function SignIn(){
         //   });
     
 return (
-    <div>
+    <div className="signin">
         <form onSubmit={loginUser}>
         <h1>Please Sign In before use</h1>
             

@@ -3,7 +3,8 @@ import React, {useState, Link} from 'react';
 
 
 
-export default function SinglePost({mode, postid}){
+ export default function SinglePost( props ){
+    const {mode, postid} = props
     // The function SignlePost is to show the details of existing Post
     // It can be in any state: 
     // Post: Open;  - During First come first serve, it is open for any user to buy
