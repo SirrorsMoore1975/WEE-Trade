@@ -20,18 +20,23 @@ function Home(){
     
     // if false, isLogin should be false
     return (
-        <div className="table">
-            
-            <div className="row1">
-            <NavBar />
+        
+        // <div className="table">
+            <div className='test'>
+            <div className='row1'>
+                <NavBar />
             </div>
-            <div className="column">
-                <SideBar />
+            <div className='row2'>
+                <span className='column1'><SideBar /></span>
+
+                <span className='column2'><Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post></span>
             </div>
-            <p>{"Under Construction"}</p>
-            <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
             
-        </div>
+
+
+
+</div>
+       
     )
     
 }

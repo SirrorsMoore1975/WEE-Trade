@@ -3,3 +3,21 @@ div.row1 {
     width:100%;
     text-align:left;
 }
+div.colum1 {
+    background-color:goldenrod;
+}
+.table {
+    display: flex;
+}
+
+.column {
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.row {
+    border: 1px black solid;
+    height: 3em;
+    margin: auto;
+    width: 100%;
+}

@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../db/index');
+const knex = require('../db/index');
 
 function setupServer() {
     const app = express();
@@ -23,7 +23,7 @@ function setupServer() {
     /**
      *  user route
      */
-    app.get('/api/user', (req, res) => {
+    app.get('/api/user', async (req, res) => {
         // should return whole list of user, 
         // check if limit query used
         const table = "user"
@@ -40,7 +40,7 @@ function setupServer() {
             // }
         
         
-            const payload = db('user').select(user).from(table).limit(max);
+            const payload = await knex('user').select('*').from(table).limit(max);
       
         
         console.log("😄", payload)
@@ -79,14 +79,36 @@ function setupServer() {
 
     app.post('/api/user', (req, res)=> {
         // Add new user - check credential
-        const {username, email, address } = req.body;
-        let length;
+        
+        console.log("💣",req.body);
+        // const inputData = {username:username, email: email, address:address}
+        // const { username, email, address } = req.body;
+        //let length;
         // {username, email, address}
-        for(let i =0;i<length; i++){}
+        // for(let i =0;i<length; i++){}
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
-        knex('user').insert({username, email, address})
+     try   {
+        const username = req.body.username;
+        const email = req.body.email;
+        const address = req.body.address;
+        knex('user').insert({username:username, email:email, address:address}).then(() => { knex.select().from('user').then((user) => {
+            res.send(user)
+        })
+    })
+            // const result = await knex('user').insert(inputData);
+            // const result = await knex.select({username, email, address}).from('user')
+            // const result = await knex.query("INSERT INTO weetrade (username")
+            // await Promise.all([  
+            // knex('user').insert({username: username}),
+            // knex('user').insert({email:email}),
+            // knex('user').insert({address:address})
+    //  ])
+    } catch (err) {
+        console.log("🌎",err);
+    }
         
+        res.send({message: "Payload has successfully received", isUploaded: true})
     });
 
     
