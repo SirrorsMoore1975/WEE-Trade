@@ -10,6 +10,11 @@ import Home from '../src/pages/Home'
 import {AuthContextProvider} from './components/context/AuthContext'
 
 function App() {
+
+  
+
+
+
   return (
     <div className="App">
       <AuthContextProvider>
