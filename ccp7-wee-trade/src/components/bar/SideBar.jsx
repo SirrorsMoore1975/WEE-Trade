@@ -7,8 +7,8 @@ export default function SideBar (){
 
 
     return (
-        <>
-        <div className="sidebar">
+        <div className="sidebar-head">
+        <div className='sidebar-body'>
         <h4>Your Post</h4>
         <hr />
         <div>Add Post</div>
@@ -16,6 +16,6 @@ export default function SideBar (){
         <div>Check Your Post</div>
         
         </div>
-        </>
+        </div>
     )
 }

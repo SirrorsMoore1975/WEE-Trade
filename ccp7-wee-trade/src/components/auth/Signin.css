@@ -3,9 +3,11 @@
     padding: 20px;
     background-color:paleturquoise;
     border-radius: 20px;
-    /* display: flex; */
+    
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
-    width: 400px;
-  }
+    /* width: 1000px; */
+    display: flex;
+    justify-content: center;
+}

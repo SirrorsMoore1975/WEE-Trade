@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Clock from '../timer/Clock';
 
 import './NavBar.css'
 
@@ -21,20 +22,15 @@ export default function NavBar({ isLoggedIn, username }){
         }
     }
 
-    const tick = () => {
-        const element =  new Date().toLocaleTimeString()
-        setTime(element)
-
-        //root.render(element);}
-      
-      setInterval(tick, 1000);
-    }
+    
 
     return (
-        <div><div className="Navbar">
+        <div>
+            <div className="taskbar-top"></div>
+            <div className="Navbar">
         <h1 className="greeting">Welcome To Wee-Trade</h1>
         <div className="loginStatus">
-        <input className="myReactClock" value={element}></input>
+        <Clock />
         {isLoggedIn ? <><dir className="LoggedIn">You Are logged in as {username}</dir><div>Welcome {username}</div> </>: <div className="notLogin"><Link to="/signin">Sign In</Link>{ " | " }<Link to="/signup">Sign Up</Link><div>Welcome Okakusama</div></div>}
         
         
