@@ -1,10 +1,10 @@
-/* .sidebar-head { */
-    /* background-color:goldenrod; */
-    /* display: block; */
-    /* overflow: auto; */
-    /* position: relative; */
-    /* height: auto; */
-    /* min-height: 100% !important; */
-    /* display: block; */
-/* overflow: auto; */
-/* } */
+.sidebar-head { 
+    background-color:goldenrod;
+    
+    overflow: auto;
+    position: relative;
+    height: auto;
+    min-height: 100% !important;
+    display: block;
+overflow: auto;
+}

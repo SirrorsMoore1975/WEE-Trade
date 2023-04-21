@@ -1,6 +1,5 @@
 import React, {useState, Link} from 'react';
-
-
+import "./SideBar.css";
 
 
 export default function SideBar (){

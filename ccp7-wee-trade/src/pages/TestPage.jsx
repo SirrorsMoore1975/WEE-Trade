@@ -12,6 +12,8 @@ function TestPage () {
 
     return (
         <>
+        <Button />
+        <Button value="Testing"></Button>
         </>
     )
 }

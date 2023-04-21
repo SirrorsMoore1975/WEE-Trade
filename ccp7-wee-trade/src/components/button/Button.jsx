@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Link} from 'react';
 
-
+import './Button.css';
 
 
 export default function Button ({btnClassName, value, htmlFor}){
