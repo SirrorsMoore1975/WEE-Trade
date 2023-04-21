@@ -1,0 +1,20 @@
+.Container {
+    background-color:paleturquoise;
+    margin: 20px;
+    padding: 20px;
+    
+    border-radius: 20px;
+    /* align-items:center; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+    /* width: 400px; */
+
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    /* width: 1000px; */
+    /* display: flex; */
+    justify-content: center;
+}
