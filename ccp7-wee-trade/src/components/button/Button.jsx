@@ -33,8 +33,10 @@ export default function Button ({btnClassName, value, htmlFor}){
     // }
     return (
         <>
-        <button className={useBtnClassName} htmlFor={htmlFor} type='submit' >{useValueName}</button>
-        
+        <div className='background'>
+            <label className={btnClassName}></label>
+        <button className='button-glow' htmlFor={htmlFor} type='submit' >{useValueName}</button>
+        </div>
         </>
     )
 }
