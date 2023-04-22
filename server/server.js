@@ -20,6 +20,16 @@ function setupServer() {
         }
     };
 
+    // TwoDigit of date
+    // date = date > 9 ? date : "0" + date;
+
+    const date = new Date();
+    let YYYY = date.getFullYear().toString();
+    let MM = date.getMonth()+1;
+    MM = MM > 9 ? MM.toString() : "0" + MM;
+    let DD = date.getDay();
+    DD = DD > 9 ? DD.toString() : "0" + DD;
+
     /**
      *  user route
      */
@@ -132,47 +142,58 @@ function setupServer() {
 
     app.get('/api/posts/', async (req, res) => {
         // print full post, should set limit n=100
-        const postfeeds = await db('post')
+        const postfeeds = await knex('post')
         .select('*')
         .timeout(1500);
-    })
+    });
 
+    app.post('/api/post', async (req, res) =>{
+    })
+    
     app.get('/api/posts/:id', (req, res) => {
         // print post id
     })
-
+    
     app.post('/api/posts/:userid/addpost', (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
     });
-
-
-
+    
+    
+    
     // app.post('/api/post/:id/', (req,res)=> {
-    //     // pending
-    // });
-
-    // app.delete('/api/post/:id', (req,res) => {
-    //     // remove post by id
-    // })
-
-    /**
-     * Order route
-     */
-    app.get('/api/order', (req, res) => {
-        // print all orders, limit to 50 by default, can specify limit
-        // Check credential / syntax
-    })
-
-    app.get('/api/order/:id', (req, res) => {
-        // print order of specific id
-    })
-
-    // app.get('/api/order/:seller_id', (req, res) => {
-    //     // return orders from the seller_id, default last 20, can specify limit
-    // })
-    app.post('/api/order', (req, res) => {
-        // add orders - grab post ID, seller ID, buyer ID, 
+        //     // pending
+        // });
+        
+        // app.delete('/api/post/:id', (req,res) => {
+            //     // remove post by id
+            // })
+            
+            /**
+             * Order route
+            */
+           app.get('/api/order', (req, res) => {
+               // print all orders, limit to 50 by default, can specify limit
+               // Check credential / syntax
+            })
+            
+            app.get('/api/order/:id', (req, res) => {
+                // print order of specific id
+            })
+            
+            // app.get('/api/order/:seller_id', (req, res) => {
+                //     // return orders from the seller_id, default last 20, can specify limit
+                // })
+        app.post('/api/order', async (req, res) => {
+            //const delivery_status = "TBA";
+        const delivery_status = await knex("delivery_status").where("id", 1); // id = 1 status= pending
+        const {post_id, seller_id, buyer_id} = req.body;
+        const order = {post_id, seller_id, buyer_id, delivery_status }
+            // An order should be show to both the seller AND buyer
+            // The Order is mostly controlable by the seller, especially the delivery status, buyer has little or no premission of accessing seller's order
+        await knex('order').insert({"post_id":post_id, "sell_id":seller_id, "buyer_id":buyer_id, "delivery":delivery_status}) 
+        res.send({message: "server received payload, preparing order", data: order});
+                // add orders - grab post ID, seller ID, buyer ID, 
     })
     app.post('/api/order/:id/status/:status', (req, res) => {
         // Change order status
