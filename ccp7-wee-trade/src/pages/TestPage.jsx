@@ -11,10 +11,13 @@ function TestPage () {
 
 
     return (
-        <>
+        <div>
+            <div>
+            <Post seller={{id:"1466", name:"Dowdon"}} desc="Excellent GPU" hasSold={false}></Post>
         <Button />
         <Button value="Testing"></Button>
-        </>
+        </div>
+        </div>
     )
 }
 
