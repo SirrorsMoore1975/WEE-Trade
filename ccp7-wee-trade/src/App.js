@@ -9,6 +9,7 @@ import {Routes, Route } from 'react-router-dom';
 import Home from '../src/pages/Home'
 import {AuthContextProvider} from './components/context/AuthContext'
 import TestPage from '../src/pages/TestPage';
+import Upload from './components/upload/Upload';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
     <Route path="/form" element={<Form></Form>}></Route>
     <Route path="/singlepost" element={<SinglePost></SinglePost>}></Route>
     <Route path="/testpage" element={<TestPage></TestPage>}></Route>
+    <Route path="/upload" element={<Upload ></Upload>}></Route>
     </Routes>
     </AuthContextProvider>
 
