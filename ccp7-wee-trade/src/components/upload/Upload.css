@@ -1,13 +1,14 @@
-.button {
+/* .button {
     cursor: pointer;
-  }
+  } */
   
-  input {
+  .fileupload {
     position: absolute;
     left: -99999999px;
   }
   
-  button {
+  .hide-browse-button {
     height: 2rem;
+    cursor: pointer;
   }
   

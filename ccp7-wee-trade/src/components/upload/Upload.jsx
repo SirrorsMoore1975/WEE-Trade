@@ -3,7 +3,8 @@ import React, { useRef } from "react";
 // import _ from "lodash";
 import "./Upload.css";
 
-export default function Upload({ photos, setPhotos }) {
+export default function Upload( props ) {
+  const { photos, setPhotos, value } = props
     const fileRef = useRef(null);
   
     const handleClick = () => {
@@ -25,7 +26,7 @@ export default function Upload({ photos, setPhotos }) {
           onChange={fileSubmit}
           className="file-upload"
         />
-        <button onClick={handleClick} className="button">
+        <button onClick={handleClick} className="hide-browse-button">
           Upload
         </button>
       </div>

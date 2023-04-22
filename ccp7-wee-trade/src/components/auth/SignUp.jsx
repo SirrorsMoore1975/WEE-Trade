@@ -25,13 +25,33 @@ return (
     <div className="signup">
         <form onSubmit={handleSignUp}>
         <h1>Please Sign Up</h1>
-        <label htmlFor="signup-username">Username:</label><br />
-            <input htmlFor="signup-username" type="text" placeholder="Your wonderful name" value={username} onChange={(e) => {setUsername(e.target.value)}}></input><br />
-            <label htmlFor="signup-email">Your Email:</label><br />
-            <input htmlFor="signup-email"  type="text" placeholder="Your email: example@example.com" value={email} onChange={(e) => {setEmail(e.target.value)}}></input><br />
+        <label htmlFor="signup-username">Username:</label>
+        <br />
+            <input 
+            htmlFor="signup-username" 
+            type="text" 
+            placeholder="Your wonderful name" 
+            value={username} 
+            onChange={(e) => {setUsername(e.target.value)}}/>
+
+            
+            <br />
+            <label htmlFor="signup-email">Your Email:</label>
+            <br />
+            <input htmlFor="signup-email"  
+            type="text" placeholder="Your email: example@example.com" 
+            value={email} onChange={(e) => {setEmail(e.target.value)}} />
+                
+                <br />
             <label htmlFor="signup-pw" >Your Password:</label><br />
-            <input htmlFor="signup-pw" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="A Strong Password"></input><br />
-            <label htmlFor="signup-address" >Your Address:</label><br />
+            <input htmlFor="signup-pw" 
+            type="password" 
+            value={password} 
+            onChange={(e) => {setPassword(e.target.value)}} 
+            placeholder="A Strong Password"></input>
+            <br />
+            <label htmlFor="signup-address" >Your Address:</label>
+            <br />
                 <input htmlFor="signup-address" type="textarea" value={address} placeholder="Your address" onChange={(e) => {setAddress(e.target.value)}}></input><br />
             <p>Click Submit to Sign up</p>
             <p className="warning">{"testing"}</p>

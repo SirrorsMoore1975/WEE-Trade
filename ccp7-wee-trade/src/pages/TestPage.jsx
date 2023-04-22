@@ -18,6 +18,8 @@ function TestPage () {
         <Button />
         <Button value="Testing"></Button>
         <Upload></Upload>
+        <input type="text"></input>
+        <input type="radio"></input>
         </div>
         </div>
     )

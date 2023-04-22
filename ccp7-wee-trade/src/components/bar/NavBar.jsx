@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import Clock from '../timer/Clock';
+
 
 import './NavBar.css'
 
 
 export default function NavBar({ isLoggedIn, username }){
     const [isGuest, setIsGuest] = useState(true);
-    const [time, setTime] =useState('');
+    
 
     const [ hasUsername, checkHasUsername] = useState(false)
     const handleCheckUsername = () => {
@@ -27,10 +27,10 @@ export default function NavBar({ isLoggedIn, username }){
     return (
         <div>
             <div className="taskbar-top"></div>
-            <div className="Navbar">
+                <div className="Navbar">
         <h1 className="greeting">Welcome To Wee-Trade</h1>
         <div className="loginStatus">
-        <Clock />
+        
         {isLoggedIn ? <><dir className="LoggedIn">You Are logged in as {username}</dir><div>Welcome {username}</div> </>: <div className="notLogin"><Link to="/signin">Sign In</Link>{ " | " }<Link to="/signup">Sign Up</Link><div>Welcome Okakusama</div></div>}
         
         

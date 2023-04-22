@@ -18,7 +18,7 @@ function Home(){
         const fetchAllPost = axios.get('/api/posts')
         setPostFeed(postfeed.data)
     }
-    // const [isLogin, setIsLogin ] = useState('false');
+    const [isLogin, setIsLogin ] = useState('true');
     
     
     return (
@@ -33,11 +33,11 @@ function Home(){
              <div>
             <div className='row2'>
                 
-                <div className='sidebar-container column1'><SideBar /></div>
+                {isLogin ? <div className='sidebar-container column1'><SideBar /></div>: null}
 
                 <div className='column2'>
                     <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
-                    <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
+                    
                     </div>
             </div>
             </div>

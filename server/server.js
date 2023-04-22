@@ -23,12 +23,12 @@ function setupServer() {
     // TwoDigit of date
     // date = date > 9 ? date : "0" + date;
 
-    const date = new Date();
-    let YYYY = date.getFullYear().toString();
-    let MM = date.getMonth()+1;
-    MM = MM > 9 ? MM.toString() : "0" + MM;
-    let DD = date.getDay();
-    DD = DD > 9 ? DD.toString() : "0" + DD;
+    // const date = new Date();
+    // let YYYY = date.getFullYear().toString();
+    // let MM = date.getMonth()+1;
+    // MM = MM > 9 ? MM.toString() : "0" + MM;
+    // let DD = date.getDay();
+    // DD = DD > 9 ? DD.toString() : "0" + DD;
 
     /**
      *  user route
@@ -169,9 +169,9 @@ function setupServer() {
             //     // remove post by id
             // })
             
-            /**
-             * Order route
-            */
+    /**
+     * Order route
+    */
            app.get('/api/order', (req, res) => {
                // print all orders, limit to 50 by default, can specify limit
                // Check credential / syntax
@@ -195,6 +195,7 @@ function setupServer() {
         res.send({message: "server received payload, preparing order", data: order});
                 // add orders - grab post ID, seller ID, buyer ID, 
     })
+    
     app.post('/api/order/:id/status/:status', (req, res) => {
         // Change order status
     })

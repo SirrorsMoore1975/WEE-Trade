@@ -13,6 +13,8 @@ function SignIn(){
     const [password, setPassword] = useState('');
     const { loginUser } = UserAuth();
 
+    // const response = loginUser;
+    // console.log("🍌",response);
     // const handleSignIn = async (e) => {
     //     e.preventDefault();
     //     const userCred = await signInWithEmailAndPassword(auth, email, password);
