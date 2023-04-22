@@ -14,10 +14,12 @@ function TestPage () {
     return (
         <div>
             <div>
+
             <Post post_id="2345" seller={{id:"1466", name:"Dowdon"}} amount="5000" desc="Excellent GPU" hasSold={false} img_url="https://i.ibb.co/x38n99S/Space-Flame-nasa-1100.jpg" alt="anything"></Post>
         <Button />
         <Button value="Testing"></Button>
         <Upload></Upload>
+
         </div>
         </div>
     )
