@@ -20,15 +20,17 @@ function setupServer() {
         }
     };
 
-    // TwoDigit of date
-    // date = date > 9 ? date : "0" + date;
-
-    // const date = new Date();
-    // let YYYY = date.getFullYear().toString();
-    // let MM = date.getMonth()+1;
-    // MM = MM > 9 ? MM.toString() : "0" + MM;
-    // let DD = date.getDay();
-    // DD = DD > 9 ? DD.toString() : "0" + DD;
+    
+/**
+ * TwoDigit of date
+    date = date > 9 ? date : "0" + date;
+ */
+    const date = new Date();
+    let YYYY = date.getFullYear().toString();
+    let MM = date.getMonth()+1;
+    MM = MM > 9 ? MM.toString() : "0" + MM;
+    let DD = date.getDay();
+    DD = DD > 9 ? DD.toString() : "0" + DD;
 
     /**
      *  user route
@@ -60,7 +62,7 @@ function setupServer() {
 
     app.get('/api/user/:id', validateId, (req, res) => {
         const id = praseInt(req.params.id);
-        const result = []
+        const  result = {}
     })
     
 
@@ -98,13 +100,14 @@ function setupServer() {
         // for(let i =0;i<length; i++){}
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
-     
-        const username = req.body.username;
-        const email = req.body.email;
-        const address = req.body.address;
+        const {username, email, address, UID} = req.body
+        // const username = req.body.username;
+        // const email = req.body.email;
+        // const address = req.body.address;
+        // const UID = req.body.UID;
         // console.log("😉",typeof username);
         
-        await knex('user').insert({username:username, email:email, address:address})
+        await knex('user').insert({username:username, email:email, address:address, UID:UID})
         const user = await knex('user').select(['username','email']);
         res.status(201).send(user);
         // .then(() => { knex.select().from('user').then((user) => {
@@ -131,8 +134,10 @@ function setupServer() {
     //     // Edit user data depends on amendment Type
     // });
 
-    app.delete('/api/user/:idEmailUsername', (req, res)=> {
+    app.delete('/api/user/', (req, res)=> {
         // Delete given user details
+        const id = req.params.id;
+
     })
 
 
@@ -195,7 +200,7 @@ function setupServer() {
         res.send({message: "server received payload, preparing order", data: order});
                 // add orders - grab post ID, seller ID, buyer ID, 
     })
-    
+
     app.post('/api/order/:id/status/:status', (req, res) => {
         // Change order status
     })
