@@ -35,7 +35,9 @@ export default function Button ({btnClassName, value, htmlFor}){
         <>
         <div className='background'>
             <label className={btnClassName}></label>
+
         <button className='button-glow' htmlFor={htmlFor} type='submit'>{useValueName}</button>
+
         </div>
         </>
     )
