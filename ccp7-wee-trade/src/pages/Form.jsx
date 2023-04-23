@@ -13,8 +13,10 @@ export default function Form (){
     const [desc, setDesc] = useState('');
     const [price, setPrice] = useState(0)
     // require GET
-    const [categories, setCategories] = useState([]); // WIP
+    const categories = useRef([{id:0,categories:"select below"}]);
+    // const [categories, setCategories] = useState([{}]); // WIP
     const [selectedCat, setSelectedCat] = useState(""); // WIP
+    const [catDropdownMenu, setCatDropdownMenu ] = useState({})
     const [condition, setCondition] = useState(0); // WIP
     // Date variable
     const [post_date, setPost_Date] = useState('');
@@ -25,22 +27,42 @@ export default function Form (){
     // boolean state, toggle between which type of input
     const [isUrl_imgInputMode, setIsUrl_imgInputMode ] = useState(true);
     
+    let categoDropdownMenu;
     useEffect(()=> {
         getCatData();
         console.log(categories);
-
     },[])
 
     // useEffect(() => {
     //     selectedCat.current = cat.id
     // },[cat.id])
 
+    /*
+    DropdownMenu Component
+    It collect data from component_categories table via axios get /api/cat
+    */
+   
 
-    // Drop down menu for Categories (WIP 1.) cannot download from database; 2.) Not yet functional )
     const getCatData = async () => {
         const result = await axios.get("/api/cat")
-        setCategories([...categories, result.data]);
-        console.log(categories)
+        console.log("😠",result);
+        categories.current = categories.current.concat(result.data);
+        console.log("😬",categories);
+        
+    }
+    const handleCatMenu = () => {
+        categoDropdownMenu = (
+            <>
+            {categories.current.map((cat, index) => (
+                <option 
+                  key={index}
+                  value={cat[categories]} 
+                  >
+                  { cat[categories] }
+                </option> 
+                  ))}
+                  </>
+        )
     }
     
 
@@ -80,7 +102,7 @@ export default function Form (){
     return (
        <>
        <div>
-        <div className="Container" onLoad={getCatData}>
+        <div className="Container">
             <form htmlFor="SubmitForm" onSubmit={handleSubmit} >
                 <label>Title</label><br />
                 <p className="title-hint">In a few word as short as possible, describ your product for sell</p>
@@ -92,15 +114,9 @@ export default function Form (){
                 
         <label htmlFor="CatDropMenu">Select Cateogries</label>
         <select className="components" onChange={handleCatChange}></select>
-        {categories.map((cat, index) => (
-          <option 
-            key={index}
-            value={cat.categories} 
-            >
-            { cat.categories }
-          </option> 
-            ))}
-                
+                { categoDropdownMenu }
+                {/**<DropdownMenu className={"components"} onChange={handleCatChange} options={categories} onKey={"categories"} */}
+                <br/>
                 <label>Description:</label><br />
                 <input className="form-product-description" type="textarea"></input><br />
                 <label>Condition</label><br />
