@@ -1,35 +1,65 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+// require('dotenv').config({
+//   path: path.join(__dirname, './.env')
+// });
+// import imgbbUploader from 'imgbb-uploader';
+// import { imgbbUploader } from "imgbb-uploader"; 
+import axios from 'axios';
+
 // import { saveObject, getSingleObject } from "../utils";
 // import _ from "lodash";
 import "./Upload.css";
 
 export default function Upload( props ) {
-  const { photos, setPhotos, value } = props
-    const fileRef = useRef(null);
+  const { photos, setPhotos, value, getFilename} = props
+
+  const [filename, setFilename] = useState('')
   
-    const handleClick = () => {
-      fileRef.current.click();
-    };
+  const [formData, setFormData] =useState({});
   
-    const fileSubmit = async () => {
-    //   const fileObject = await saveObject(fileRef.current.files[0]);
-    //   console.log(fileObject);
-    //   const fileB64 = await getSingleObject(fileRef.current.files[0].name);
-    //   setPhotos([fileB64, ...photos]);
+
+  const fileRef = useRef(null);
+  
+    const onFileSubmitX = async (e) => {
+      e.preventDefault();
+      setFilename(fileRef.current.files[0]);
+      // const options = {
+      //   apiKey: process.env.IMGBB_API_KEY,
+      //   imagePath: filename,
+      //   name: `wee-trade-${increment.current}`
+      // }
+      // const response = await axios.post('https://api.imgbb.com/1/upload', options)
+
+      // imgbbUploader(options)
+      // .then((response) => console.log(response))
+      // .catch((error) => console.error(error));
+      getFilename(filename);
+      // const response = await axios.post('/api/post', payload)
+      
+      
     };
+
+    
   
     return (
-      <div>
-        <input
-          type="file"
-          ref={fileRef}
-          onChange={fileSubmit}
-          className="file-upload"
+      <>
+      <div className="photo-upload">
+        
+        <input type="file" ref={fileRef} accept=".png, .jpg" className="fileupload"
         />
-        <button onClick={handleClick} className="hide-browse-button">
+        <br/>
+        <button className="submit-button" type="submit" onClick={(e) => {  
+          e.preventDefault(); 
+          fileRef.current.click();
+          setFilename(fileRef.current.files[0]); 
+          getFilename(filename);}}>
           Upload
-        </button>
+        </button><br/>
+
+        
+        
       </div>
+      </>
     );
   }
   

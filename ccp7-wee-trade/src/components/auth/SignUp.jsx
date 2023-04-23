@@ -19,7 +19,8 @@ const handleSignUp = async (e) => {
     const userCred = await createUser(auth, email, password);
     console.log("🧒",userCred);
 }
-
+ const response = createUser;
+ console.log("💥",response)
 
 return (
     <div className="signup">

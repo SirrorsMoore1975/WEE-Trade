@@ -140,6 +140,17 @@ function setupServer() {
 
     })
 
+    /**
+     * Cat - a.k.a Categories
+     */
+
+    app.get("/api/cat", async (req,res) => {
+        const result = await knex('component_categories').select(['id',"categories"])
+        
+        res.status(200).send(result);
+    })
+
+
 
     /**
      * Post route
@@ -204,6 +215,9 @@ function setupServer() {
     app.post('/api/order/:id/status/:status', (req, res) => {
         // Change order status
     })
+
+
+
 
     return app;
 };
