@@ -1,9 +1,13 @@
 import React, {useState, Link} from 'react';
+import axios from 'axios';
 import "./SideBar.css";
+
+import {UserAuth} from '../context/AuthContext'
 
 
 export default function SideBar (){
-
+    const [posts, getPosts] = useState([]);
+    const [orders, getOrders] = useState([]); 
 
     return (
         <div className="sidebar-head">

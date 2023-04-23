@@ -16,12 +16,12 @@ function Home(){
     const { user, logOut } = UserAuth();
 
     const [postfeed, setPostFeed] = useState([]);
-    const [isLogin, setIsLogin ] = useState('true');
+    // const [isLogin, setIsLogin ] = useState('true');
 
     const navigate = useNavigate();
 
     const getAllPost = () => {
-        const fetchAllPost = axios.get('/api/posts')
+        const fetchAllPost = axios.get('/api/posts/')
         setPostFeed(postfeed.data)
     }
     // LogOut
@@ -42,13 +42,12 @@ function Home(){
                 <Panel />
              <div className="NarBar">
                 <NavBar />
-                <p>current user: {user && user.email}</p>
-                <button className="logout-btn" onClick={handleLogOut} >Logout</button>
+                
              </div>
              <div>
             <div className='row2'>
                 
-                {isLogin ? <div className='sidebar-container column1'><SideBar /></div>: null}
+                <SideBar />
 
                 <div className='column2'>
                     <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
@@ -56,7 +55,7 @@ function Home(){
                     </div>
             </div>
             </div>
-            <Button value="Hot Value Deal"></Button>
+            
 
 
 </div>

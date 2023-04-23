@@ -1,18 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 // import { signInWithEmailAndPassword  } from 'firebase/auth';
 // import {auth} from '../../firebase/firebase';
 import {Link, useNavigate} from 'react-router-dom';
 // import axios from 'axios';
 
-import {UserAuth} from '../context/AuthContext'
+import {UserAuth} from '../context/AuthContext';
 import './Signin.css';
 
 function SignIn(){
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [attemptedLogin, setAttemptedLogin] = useState(false);
+    // const loginFailed = useRef(false);
+
     const { loginUser } = UserAuth();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        setAttemptedLogin(false);
+    }, [email, password])
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,7 +28,9 @@ function SignIn(){
             await loginUser(email, password);
             navigate('/');
         } catch (err) {
-
+            console.log(err);
+            setAttemptedLogin(true)
+            
         }
     };
 
@@ -69,7 +79,8 @@ return (
 
             
             <p>Click Submit to Signin</p>
-                <p className="warning">{"testing"}</p>
+                
+                <p className="warning">{attemptedLogin ? <>Authenticate Error. Please Try Again</> : null}</p>
                 <p> Have no account? <Link to="/signup">Sign Up</Link></p>
                 <p><Link to="/">Home</Link></p>
             <button type="submit" >Submit</button>
