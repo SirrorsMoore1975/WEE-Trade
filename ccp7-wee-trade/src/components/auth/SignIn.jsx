@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 // import { signInWithEmailAndPassword  } from 'firebase/auth';
 // import {auth} from '../../firebase/firebase';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 // import axios from 'axios';
 
 import {UserAuth} from '../context/AuthContext'
@@ -12,9 +12,19 @@ function SignIn(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { loginUser } = UserAuth();
+    const navigate = useNavigate()
 
-    const response = loginUser;
-    console.log("🍌",response);
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            await loginUser(email, password);
+            navigate('/');
+        } catch (err) {
+
+        }
+    };
+
+    
     // const handleSignIn = async (e) => {
     //     e.preventDefault();
     //     const userCred = await signInWithEmailAndPassword(auth, email, password);
@@ -49,7 +59,7 @@ function SignIn(){
     
 return (
     <div className="signin">
-        <form onSubmit={loginUser}>
+        <form onSubmit={handleLogin}>
         <h1>Please Sign In before use</h1>
             
             <label htmlFor="signin-email">Your Email:</label><br />

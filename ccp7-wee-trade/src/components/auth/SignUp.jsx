@@ -1,30 +1,43 @@
 import React, {useState} from 'react';
 // import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebase';
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {UserAuth} from '../context/AuthContext'
 import './SignUp.css';
 
 function SignUp(){
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
     const [username, setUsername ] = useState('');
 
-    const {createUser} = UserAuth();
 
-const handleSignUp = async (e) => {
-    e.preventDefault();
-    const userCred = await createUser(auth, email, password);
-    console.log("🧒",userCred);
-}
- const response = createUser;
- console.log("💥",response)
+    const {createdUser} = UserAuth();
+    const navigate = useNavigate();
+
+    const handleSingUp = async (e) => {
+        e.preventDefault();
+        try{
+            await createdUser(email, password);
+            navigate('/')
+        } catch (err){
+            console.error(err);
+        }
+    };
+
+// const handleSignUp = async (e) => {
+//     e.preventDefault();
+//     const userCred = await createUserWithEmailAndPassword(auth, email, password);
+//     console.log("🧒",userCred);
+// }
+//  const response = createUser;
+//  console.log("💥",response)
 
 return (
     <div className="signup">
-        <form onSubmit={handleSignUp}>
+        <form onSubmit={handleSingUp}>
         <h1>Please Sign Up</h1>
         <label htmlFor="signup-username">Username:</label>
         <br />
