@@ -150,6 +150,23 @@ function setupServer() {
         res.status(200).send(result);
     })
 
+    /**
+     * Condition 
+     */
+
+    app.get("/api/condition", async (req, res) =>{
+        const result = await knex('condition').select(['id',"condition"])
+        res.status(200).send(result);
+    })
+    
+    /**
+     *  Delivery Status
+     */
+
+    app.get("/api/delivery", async (req, res) => {
+        const result = await knex('delivery_status').select(["id","delivery_status"])
+        res.status(200).send(result);
+    })
 
 
     /**
@@ -163,16 +180,34 @@ function setupServer() {
         .timeout(1500);
     });
 
-    app.post('/api/post', async (req, res) =>{
+    app.post('/api/posts', async (req, res) =>{
     })
     
     app.get('/api/posts/:id', (req, res) => {
         // print post id
     })
     
-    app.post('/api/posts/:userid/addpost', (req,res)=> {
+    app.post('/api/posts/:userIdOrUN/addpost', async (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
+        const {seller_id, title, img_url, desc, categories, condition, post_date, post_timestamp, price} = req.body
+        const userIdOrUN = req.params.userIdOrUN;
+        let testUser;
+        if(isNaN(userIdOrUN)){
+            // Check if username existed- if it does proceed
+            testUser = await knex('user').where("username", userIdOrUN).select(["id","username"]).timeout(1500);
+        } else {
+            // Check if that user id existed - if it does proceed
+            testUser = await knex('user').where("id", userIdOrUN).select(["id","username"]).timeout(1500);
+        }
+        if(testUser.length === 0){
+            res.status(400).send({ message: "user id or username not valid", })
+        } else {
+            const result = await knex('post').insert([{"seller_id": seller_id, "title":title, "img_url":img_url, "categories":categories,"description":desc, "condition":condition, "post_date":post_date, "created_at":post_timestamp, "cost": price}])
+        }
+
+        
+        
     });
     
     

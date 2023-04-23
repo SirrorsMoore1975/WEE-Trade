@@ -27,6 +27,8 @@
     /* width: 100px; */
     /* height: 100px; */
 }
+
+
 /* .toggeleBtn {
     align-items: center;
 } */
@@ -37,3 +39,13 @@ img {
     object-fit: contain;
     /* overflow: hidden; */
   }
+
+.title-hint, .title-box {
+   
+    width: 500px;
+}
+
+.form-product-description {
+    height:400px;
+    width:500px;
+}
