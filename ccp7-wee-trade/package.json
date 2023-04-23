@@ -9,12 +9,15 @@
     "axios": "^1.3.5",
     "dotenv": "^16.0.3",
     "firebase": "^9.19.1",
+    "fs": "^0.0.1-security",
+    "imgbb-uploader": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1"
   },
   "proxy": "http://localhost:4000",
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

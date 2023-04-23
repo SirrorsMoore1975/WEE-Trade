@@ -5,15 +5,17 @@ import './Post.css';
 
 
 
-export default function Post ({className, seller, post_id, postTitle,img_url, img_alt, desc, amount, hasSold}){
+export default function Post (props ){
+    const {className, seller, post_id, postTitle,img_url, img_alt, desc, amount, hasSold} = props;
+
     const [ classes, setClassName ] = useState("");
     const [ postsTitle, setPostsTitle ] = useState ("");
     const [ isSeller, setIsSeller ] = useState(true);
-    const [ dateFormate, setDateFormate ] = useState("");
-    const [resultDate, setResultDate] = useState("");
+    // const [ dateFormate, setDateFormate ] = useState("");
+    // const [resultDate, setResultDate] = useState("");
     const [hasImage, setHasImage] = useState(true);
-
-    const HandleSetHasImage = () => {
+    
+    const handleSetHasImage = () => {
         if(img_url){
             setHasImage(true);
         } else {
@@ -23,27 +25,27 @@ export default function Post ({className, seller, post_id, postTitle,img_url, im
         
     }
 
-    const getDate = (expression) => {
-        setDateFormate(new Date())
+    // const getDate = (expression) => {
+    //     setDateFormate(new Date())
         
-        switch (expression){
-            default:
-                {
-                    setResultDate(dateFormate); 
-                    break;
-            }
+    //     switch (expression){
+    //         default:
+    //             {
+    //                 setResultDate(dateFormate); 
+    //                 break;
+    //         }
         
             
-            case "YYYY-MM-DD":
-                {
-                    setResultDate(dateFormate) 
-                    break;
-                }
+    //         case "YYYY-MM-DD":
+    //             {
+    //                 setResultDate(dateFormate) 
+    //                 break;
+    //             }
             
 
-        }
-        return resultDate
-    }
+    //     }
+    //     // return resultDate
+    // }
     
 
     const getClassesName = () => {
@@ -63,7 +65,7 @@ export default function Post ({className, seller, post_id, postTitle,img_url, im
     }
     
     
-    const handleBuyNow = async () => {
+    const handleBuyNow =  async () => {
         const submitForm = { 
             "seller_id":seller.id, 
             "buyer_id":"current_user", 
@@ -77,16 +79,19 @@ export default function Post ({className, seller, post_id, postTitle,img_url, im
 
     return (
         <>
-    <div className="post-card" onLoad={HandleSetHasImage}>
+    <div className="post-card" 
+    onLoad={() => {handleSetHasImage(); getClassesName(); getPostsTitle();} }>
         {/* {this is where the post should look} */}
-        <div className={classes} onLoad={() => {getClassesName(); getPostsTitle();}}>
+        <div className={classes}>
             <h2>{post_id}{":"}{postsTitle}{classes}</h2>
-            <p className="sellerDetails">{`seller:${seller.name} (${seller.id})`}</p><div>
+            <p className="sellerDetails">{`seller:${seller.name} (${seller.id})`}</p>
             
-            {hasImage ? <img src={img_url} alt={img_alt}/> : null}
+            <div>
+            
+            {hasImage ? <img src={img_url} alt={img_alt}/> : <div></div>}
             </div>
             
-            <div className="desc-box">{desc}</div>
+            <div className="desc-box" type="textarea">{desc}</div>
             <p className="cost-box">${amount}</p>
             <form htmlFor="acceptance">
             

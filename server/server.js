@@ -20,9 +20,11 @@ function setupServer() {
         }
     };
 
-    // TwoDigit of date
-    // date = date > 9 ? date : "0" + date;
-
+    
+/**
+ * TwoDigit of date
+    date = date > 9 ? date : "0" + date;
+ */
     const date = new Date();
     let YYYY = date.getFullYear().toString();
     let MM = date.getMonth()+1;
@@ -60,7 +62,7 @@ function setupServer() {
 
     app.get('/api/user/:id', validateId, (req, res) => {
         const id = praseInt(req.params.id);
-        const result = []
+        const  result = {}
     })
     
 
@@ -98,13 +100,14 @@ function setupServer() {
         // for(let i =0;i<length; i++){}
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
-     
-        const username = req.body.username;
-        const email = req.body.email;
-        const address = req.body.address;
+        const {username, email, address, UID} = req.body
+        // const username = req.body.username;
+        // const email = req.body.email;
+        // const address = req.body.address;
+        // const UID = req.body.UID;
         // console.log("😉",typeof username);
         
-        await knex('user').insert({username:username, email:email, address:address})
+        await knex('user').insert({username:username, email:email, address:address, UID:UID})
         const user = await knex('user').select(['username','email']);
         res.status(201).send(user);
         // .then(() => { knex.select().from('user').then((user) => {
@@ -131,8 +134,38 @@ function setupServer() {
     //     // Edit user data depends on amendment Type
     // });
 
-    app.delete('/api/user/:idEmailUsername', (req, res)=> {
+    app.delete('/api/user/', (req, res)=> {
         // Delete given user details
+        const id = req.params.id;
+
+    })
+
+    /**
+     * Cat - a.k.a Categories
+     */
+
+    app.get("/api/cat", async (req,res) => {
+        const result = await knex('component_categories').select(['id',"categories"])
+        
+        res.status(200).send(result);
+    })
+
+    /**
+     * Condition 
+     */
+
+    app.get("/api/condition", async (req, res) =>{
+        const result = await knex('condition').select(['id',"condition"])
+        res.status(200).send(result);
+    })
+    
+    /**
+     *  Delivery Status
+     */
+
+    app.get("/api/delivery", async (req, res) => {
+        const result = await knex('delivery_status').select(["id","delivery_status"])
+        res.status(200).send(result);
     })
 
 
@@ -147,16 +180,34 @@ function setupServer() {
         .timeout(1500);
     });
 
-    app.post('/api/post', async (req, res) =>{
+    app.post('/api/posts', async (req, res) =>{
     })
     
     app.get('/api/posts/:id', (req, res) => {
         // print post id
     })
     
-    app.post('/api/posts/:userid/addpost', (req,res)=> {
+    app.post('/api/posts/:userIdOrUN/addpost', async (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
+        const {seller_id, title, img_url, desc, categories, condition, post_date, post_timestamp, price} = req.body
+        const userIdOrUN = req.params.userIdOrUN;
+        let testUser;
+        if(isNaN(userIdOrUN)){
+            // Check if username existed- if it does proceed
+            testUser = await knex('user').where("username", userIdOrUN).select(["id","username"]).timeout(1500);
+        } else {
+            // Check if that user id existed - if it does proceed
+            testUser = await knex('user').where("id", userIdOrUN).select(["id","username"]).timeout(1500);
+        }
+        if(testUser.length === 0){
+            res.status(400).send({ message: "user id or username not valid", })
+        } else {
+            const result = await knex('post').insert([{"seller_id": seller_id, "title":title, "img_url":img_url, "categories":categories,"description":desc, "condition":condition, "post_date":post_date, "created_at":post_timestamp, "cost": price}])
+        }
+
+        
+        
     });
     
     
@@ -169,9 +220,9 @@ function setupServer() {
             //     // remove post by id
             // })
             
-            /**
-             * Order route
-            */
+    /**
+     * Order route
+    */
            app.get('/api/order', (req, res) => {
                // print all orders, limit to 50 by default, can specify limit
                // Check credential / syntax
@@ -195,9 +246,13 @@ function setupServer() {
         res.send({message: "server received payload, preparing order", data: order});
                 // add orders - grab post ID, seller ID, buyer ID, 
     })
+
     app.post('/api/order/:id/status/:status', (req, res) => {
         // Change order status
     })
+
+
+
 
     return app;
 };
