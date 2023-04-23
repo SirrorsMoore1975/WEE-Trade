@@ -48,4 +48,6 @@ img {
 .form-product-description {
     height:400px;
     width:500px;
+    vertical-align: top;
 }
+
