@@ -19,6 +19,7 @@ function Home(){
     const [returnData, setReturnData] = useState([]);
     // const [username, setUsername] = useState()
 
+
     // First time login success, homepage should:
     // Create a new user in user table (Send payload to db)
     // 
@@ -45,6 +46,7 @@ function Home(){
         
 
     // }, [])
+
     
     // const checkInUserDetail = () => {
     //     const result = axios.post(`/api/user/checkCredential`, checkIn)
@@ -122,7 +124,9 @@ function Home(){
              <div>
             <div className='row2'>
                 
+
                 <SideBar />
+
 
                 <div className='column2'>
                     <div className="post-area">

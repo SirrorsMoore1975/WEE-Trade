@@ -14,6 +14,7 @@ function SignIn(){
     const [attemptedLogin, setAttemptedLogin] = useState(false);
     // const loginFailed = useRef(false);
 
+
     const { loginUser, user } = UserAuth();
     const navigate = useNavigate();
 
@@ -41,6 +42,36 @@ function SignIn(){
     
 
 
+
+    const { loginUser, user } = UserAuth();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        setAttemptedLogin(false);
+    }, [email, password]);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await loginUser(email, password);
+            console.log("🍊",response);
+             
+            navigate('/');
+        } catch (err) {
+            console.log(err);
+            setAttemptedLogin(true)
+            
+        }
+    };
+
+    
+    
+
+
+    const response = loginUser;
+    console.log("🍌",response);
     // const handleSignIn = async (e) => {
     //     e.preventDefault();
     //     const userCred = await signInWithEmailAndPassword(auth, email, password);

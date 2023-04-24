@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './../button/Button';
 
 
 import {UserAuth} from '../context/AuthContext';
 
+
 import './NavBar.css'
+
 
 
 export default function NavBar(){
@@ -20,6 +23,7 @@ export default function NavBar(){
 
         } catch (err) {
             console.error(err);
+
         }
     }
     
@@ -47,6 +51,7 @@ export default function NavBar(){
         <h1 className="greeting">Welcome To Wee-Trade</h1>
         <div className="loginStatus">
         
+
         <dir className="LoggedIn">You Are logged in as {user.email}</dir>
         <div>Welcome {user.email}</div>
         
@@ -54,6 +59,7 @@ export default function NavBar(){
         {/* <div className="notLogin"><Link to="/signin">Sign In</Link>{ " | " }<Link to="/signup">Sign Up</Link>
         <div>Welcome Okakusama</div>
         </div> */}
+
         
         
         
