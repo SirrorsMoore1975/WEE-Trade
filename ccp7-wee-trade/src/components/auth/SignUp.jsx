@@ -14,10 +14,10 @@ function SignUp(){
     const [attemptedLogin, setAttemptedLogin] = useState(false);
     const [attemptedNoPW, setAttemptedNoPW ] = useState('')
     const [attemptedNoEmail, setAttemptedNoEmail ] = useState('')
-    
+    const [UID, setUID] = useState("");
     
 
-    const {createUser, checkUserExistance} = UserAuth();
+    const {createUser, sendCreatedUID} = UserAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -25,6 +25,10 @@ function SignUp(){
         setAttemptedLogin(false);
     }, [email, password])
     
+    useEffect(() => {
+        sendCreatedUID(UID)
+    },[UID])
+
     const handleSingUp = async (e) => {
         // const payload = {
         //     username:username,
@@ -35,8 +39,9 @@ function SignUp(){
         e.preventDefault();
         try{
             
-            const response = await createUser(email, password);
-            // await checkUserExistance(username, email, address)
+            const response = await createUser(username, email, address, password);
+            setUID(response.uid)
+            // await sendCreatedUID(UID)
             navigate('/');
             
         } catch (err){

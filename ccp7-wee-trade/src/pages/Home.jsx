@@ -25,7 +25,7 @@ function Home(){
 
 
 
-    const [postfeed, setPostFeed] = useState([]);
+    const [postfeed, setPostfeed] = useState([]);
     // const [isLogin, setIsLogin ] = useState('true');
 
     const navigate = useNavigate();
@@ -56,9 +56,17 @@ function Home(){
 
 
 
-    const getAllPost = () => {
-        const fetchAllPost = axios.get('/api/posts/')
-        setPostFeed(postfeed.data)
+    const getAllPost = async () => {
+        const fetchAllPost = await axios.get('/api/posts/')
+        setPostfeed([...postfeed, fetchAllPost.data])
+        console.log(postfeed)
+
+        // expect postFeed to be full of post with product waiting to be brought
+        /**
+         * the expected result is all the rows of the post table
+         */
+
+
     }
     // LogOut - handled by Navbar 
     // const handleLogOut = async () => {

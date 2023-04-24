@@ -209,6 +209,9 @@ function setupServer() {
         const postfeeds = await knex('post')
         .select('*')
         .timeout(1500);
+        res.send(postfeeds)
+
+        
     });
 
     app.post('/api/posts', async (req, res) =>{
