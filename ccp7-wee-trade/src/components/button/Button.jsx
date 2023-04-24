@@ -3,7 +3,9 @@ import React, {useState, useEffect, Link} from 'react';
 import './Button.css';
 
 
-export default function Button ({btnClassName, value, htmlFor, onSubmit}){
+
+export default function Button ({btnClassName, setValue, btntype, htmlFor, onClick, onSubmit}){
+
     // if you want to use a different className for the button for a different css style
     const [useBtnClassName, setUseBtnName] = useState('');
     const [useValueName, setValueName] = useState('');
@@ -20,11 +22,11 @@ export default function Button ({btnClassName, value, htmlFor, onSubmit}){
         }
     }
     const handleValueName = ()=> {
-        if(value){
-            setValueName(value);
+        if(setValue==="Submit"){
+            setValueName("Submit");
 
         } else {
-            setValueName("Submit")
+            setValueName(setValue)
         }
     }
     // const wrapperFunc = () => {
@@ -33,12 +35,16 @@ export default function Button ({btnClassName, value, htmlFor, onSubmit}){
     // }
     return (
         <>
-        <div className='background'>
+
+        <div className={useBtnClassName}>
+        <div className='btnArea'>
         {/* <form htmlFor={htmlFor} onSubmit={onSubmit}> */}
             <label className={btnClassName}></label>
 
-        <button className='button-glow' type='submit'>{useValueName}</button>
+        <button className='button-glow' onClick={onClick} type={btntype}>{useValueName}</button>
         {/* </form> */}
+        </div>
+
         </div>
         </>
     )

@@ -5,9 +5,14 @@ import Button from '../components/button/Button'
 import './Form.css';
 import Upload from "../components/upload/Upload";
 
+
 import axios from 'axios';
 
-export default function Form ({user_id}){
+import {UserAuth} from './../components/context/AuthContext'
+
+
+export default function Form (){
+
     /*
     *   TwoDigit of date: date = date > 9 ? date : "0" + date;
     */
@@ -17,6 +22,9 @@ export default function Form ({user_id}){
     MM = MM > 9 ? MM.toString() : "0" + MM;
     let DD = date.getDay();
     DD = DD > 9 ? DD.toString() : "0" + DD;
+
+
+    const { user } = UserAuth();
 
 
     // variables
@@ -88,11 +96,13 @@ export default function Form ({user_id}){
         console.log("from UseEffect cost",cost);
     },[cost])
 
+
     /*
     DropdownMenu Component
     It collect data from component_categories table via axios get /api/cat
     */
    
+
 
     const getCatData = async () => {
         const result = await axios.get("/api/cat")
@@ -219,7 +229,9 @@ export default function Form ({user_id}){
                 <input type="text" className="price" value={cost} onChange={(e) => {setCost(e.target.value)}} placeholder="Name Your Price"></input><br />
 
 {/** The Fantastic Button */}
-                <Button htmlFor="SubmitForm" value="Submit Post" />
+
+                <Button htmlFor="SubmitForm" btntype="submit" setValue="Submit Post" />
+
             </form>
         </div>
         </div>

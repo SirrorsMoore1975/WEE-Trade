@@ -11,6 +11,8 @@ import {AuthContextProvider} from './components/context/AuthContext'
 import TestPage from '../src/pages/TestPage';
 import Upload from './components/upload/Upload';
 
+import  ProtectedRoute  from './components/auth/ProtectedRoute';
+
 function App() {
 
   
@@ -21,7 +23,11 @@ function App() {
     <div className="App">
       <AuthContextProvider>
     <Routes>
-    <Route path="/" element={<Home></Home>}></Route>
+    <Route path="/" element={
+    <ProtectedRoute>
+      <Home></Home>
+    </ProtectedRoute>
+    }></Route>
     <Route path="/signin" element={<SignIn></SignIn>}></Route>
     <Route path="/signup" element={<SignUp></SignUp>}></Route>
     <Route path="/post" element={<Post seller={{id:"1234", name:"Max" }}></Post>}></Route>
