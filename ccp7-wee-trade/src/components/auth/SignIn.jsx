@@ -15,28 +15,28 @@ function SignIn(){
     // const loginFailed = useRef(false);
 
 
-    const { loginUser, user } = UserAuth();
-    const navigate = useNavigate();
+    // const { loginUser, user } = UserAuth();
+    // const navigate = useNavigate();
 
-    useEffect(()=>{
+    // useEffect(()=>{
         
-        setAttemptedLogin(false);
-    }, [email, password]);
+    //     setAttemptedLogin(false);
+    // }, [email, password]);
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    // const handleLogin = async (e) => {
+    //     e.preventDefault();
         
-        try {
-            const response = await loginUser(email, password);
-            console.log("🍊",response);
+    //     try {
+    //         const response = await loginUser(email, password);
+    //         console.log("🍊",response);
              
-            navigate('/');
-        } catch (err) {
-            console.log(err);
-            setAttemptedLogin(true)
+    //         navigate('/');
+    //     } catch (err) {
+    //         console.log(err);
+    //         setAttemptedLogin(true)
             
-        }
-    };
+    //     }
+    // };
 
     
     
