@@ -64,7 +64,8 @@ export const AuthContextProvider = ({children}) => {
     // } 
 
     const sendCreatedUID = (string) => {
-        setUID_createUser(string)
+        setUID_createUser(string);
+        return UID;
     }
     
     useEffect(() => {

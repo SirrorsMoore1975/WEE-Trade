@@ -52,7 +52,7 @@ function setupServer() {
             // }
         
         
-            const payload = await knex('user').select('*').from(table).limit(max);
+            const payload = await knex('user').select('*').limit(max);
       
         
         console.log("😄", payload)
@@ -111,7 +111,7 @@ function setupServer() {
         // console.log("😉",typeof username);
         const testEmail = knex('user').where({"email": email}).timeout(1500);
         if(testEmail.length){ // check if email existed
-            const reply = await knex('user').select('id', 'username')
+            const reply = await knex('user').select(['id', 'username'])
             res.send(reply)
         } else { // email not existed
             const result = await knex('user').insert({username, email, address, UID}) // address and username - furture expends
@@ -145,11 +145,22 @@ function setupServer() {
         // res.send({message: "Payload has successfully received", isUploaded: true})
     });
 
-    app.post('/api/user/create', async (req, res)=>{
-        const {username, email, address, UID} = req.body;
-        // check UID existed, if yes res.send should send error user existed
-        // else, res.send should add row and give user_id to the page
-        const result = await knex('user').where({"UID": UI}).select('id')
+    app.post('/api/user/init', async (req, res)=>{
+        const {email} = req.body;
+        // runs everytime it render Home
+        // if user table doesn't have UID, add UID to user table
+        // const testEmail = knex('user').where({"email": email}).select(['id','email', 'UID'])
+        
+        // const testEmail = await knex('user').where({"email": email}).first().then((row) => row).timeout(1500);
+        // console.log("🏫",testEmail);
+        
+        //  await knex('user').where({"email":email}).insert({"username":username,"email":email,"address":address, "UID":UID});
+        //  const response = await knex('user').select('*')
+        
+        const response = await knex('user').where('email', email)
+        res.status(200).send(response);
+        /*
+        const result = await knex('user').where({"UID": UID}).select(['id'])
         if(result.length){
             res.status(400).send("user existed or internal error")
         } else { // what if it has entries? they were beta unreal user, just ignore them - should run seed 000 first? 
@@ -157,6 +168,7 @@ function setupServer() {
             const user = await knex('user').select(['id, username, email']).where({"email": email})
             res.status(201).send(user);
         }
+        */
     })    
 
     app.patch('/api/user')
@@ -214,18 +226,16 @@ function setupServer() {
         
     });
 
-    app.post('/api/posts', async (req, res) =>{
-    })
     
     app.get('/api/posts/:id', (req, res) => {
         // print post id
     })
     
-    app.post('/api/posts/:userIdOrUN/addpost', async (req,res)=> {
+    app.post('/api/posts/', async (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
         const {seller_id, title, img_url, desc, categories, condition, post_date, post_timestamp, price} = req.body
-        const userIdOrUN = req.params.userIdOrUN;
+        // const userIdOrUN = req.params.userIdOrUN;
         let testUser;
         if(isNaN(userIdOrUN)){
             // Check if username existed- if it does proceed
@@ -247,7 +257,7 @@ function setupServer() {
     
     
     // app.post('/api/post/:id/', (req,res)=> {
-        //     // pending
+        //     // edit the post
         // });
         
         // app.delete('/api/post/:id', (req,res) => {

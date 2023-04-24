@@ -25,9 +25,9 @@ function SignUp(){
         setAttemptedLogin(false);
     }, [email, password])
     
-    useEffect(() => {
-        sendCreatedUID(UID)
-    },[UID])
+    // useEffect(() => {
+    //     sendCreatedUID(UID)
+    // },[UID])
 
     const handleSingUp = async (e) => {
         // const payload = {
@@ -40,7 +40,7 @@ function SignUp(){
         try{
             
             const response = await createUser(username, email, address, password);
-            setUID(response.uid)
+            // setUID(response.uid)
             // await sendCreatedUID(UID)
             navigate('/');
             
