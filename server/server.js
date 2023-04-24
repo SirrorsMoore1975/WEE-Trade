@@ -127,14 +127,14 @@ function setupServer() {
     });
 
     app.post('/api/user/create', async (req, res)=>{
-        const {username, email, address, /*UID*/} = req.body;
+        const {username, email, address, UID} = req.body;
         // check UID existed, if yes res.send should send error user existed
         // else, res.send should add row and give user_id to the page
         const result = await knex('user').where("UID", UID)
         if(result.length){
             res.status(400).send("user existed or internal error")
         } else {
-            await knex('user').insert({username:username, email:email, address:address,/* UID:UID*/})
+            await knex('user').insert({username:username, email:email, address:address, UID:UID})
             const user = await knex('user').select(['id, username, email']).where("email", "=", email)
             res.status(201).send(user);
         }
