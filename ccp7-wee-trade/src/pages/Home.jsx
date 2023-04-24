@@ -1,6 +1,6 @@
 // import SignIn from "../components/auth/SignIn"
 // import SignUp from "../components/auth/SignUp"
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Post from './../components/post/Post';
 import NavBar from './../components/bar/NavBar';
@@ -12,29 +12,61 @@ import axios from 'axios'
 import { UserAuth } from './../components/context/AuthContext';
 
 
+
 function Home(){
-    const { user, logOut } = UserAuth();
+    const { createUserInDatabase, user } = UserAuth();
+
+    // const [username, setUsername] = useState()
+
+    // First time login success, homepage should:
+    // Create a new user in user table (Send payload to db)
+    // 
+
+
 
     const [postfeed, setPostFeed] = useState([]);
     // const [isLogin, setIsLogin ] = useState('true');
 
     const navigate = useNavigate();
 
+    // useEffect(()=>{
+    //     handleAccCreate();
+
+    // }, [])
+    
+    // const checkInUserDetail = () => {
+    //     const result = axios.post(`/api/user/checkCredential`, checkIn)
+    //     createUserInDatabase(username, email, address, UID ){
+
+    //     }
+    // }
+
+
+
+
     const getAllPost = () => {
         const fetchAllPost = axios.get('/api/posts/')
         setPostFeed(postfeed.data)
     }
-    // LogOut
-    const handleLogOut = async () => {
-        try{
-            await logOut();
-            navigate('/signin')
+    // LogOut - handled by Navbar 
+    // const handleLogOut = async () => {
+    //     try{
+    //         await logOut();
+    //         navigate('/signin')
 
-        } catch (err) {
-            console.error(err);
-        }
-    }
-    
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+    // const handleAccCreate = async () => {
+    //     const payload = {
+    //         // username, email, address, UID
+    //     }
+    //     // console.log("🍉",user)
+    //     // const result = await 
+    // }
+
+
     return (
         
         // <div className="table">

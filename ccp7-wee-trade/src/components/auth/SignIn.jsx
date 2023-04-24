@@ -35,6 +35,9 @@ function SignIn(){
     };
 
     
+    
+
+
     // const handleSignIn = async (e) => {
     //     e.preventDefault();
     //     const userCred = await signInWithEmailAndPassword(auth, email, password);
@@ -73,9 +76,9 @@ return (
         <h1>Please Sign In before use</h1>
             
             <label htmlFor="signin-email">Your Email:</label><br />
-                <input htmlFor="signin-email"  type="email" placeholder="example@example.com" value={email} onChange={(e) => {setEmail(e.target.value)}}></input><br />
+                <input htmlFor="signin-email"  type="email" placeholder="example@example.com" value={email} onChange={(e) => {setEmail(e.target.value)}} required={true}></input ><br />
             <label htmlFor="signin-pw" >Your Password:</label><br />
-                <input htmlFor="signin-pw" type="password" value={password} placeholder="Your strong password" onChange={(e) => {setPassword(e.target.value)}}></input><br />
+                <input htmlFor="signin-pw" type="password" value={password} placeholder="Your strong password" onChange={(e) => {setPassword(e.target.value)}} required={true}></input><br />
 
             
             <p>Click Submit to Signin</p>

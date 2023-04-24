@@ -126,7 +126,19 @@ function setupServer() {
         // res.send({message: "Payload has successfully received", isUploaded: true})
     });
 
-    
+    app.post('/api/user/create', async (req, res)=>{
+        const {username, email, address, /*UID*/} = req.body;
+        // check UID existed, if yes res.send should send error user existed
+        // else, res.send should add row and give user_id to the page
+        const result = await knex('user').where("UID", UID)
+        if(result.length){
+            res.status(400).send("user existed or internal error")
+        } else {
+            await knex('user').insert({username:username, email:email, address:address,/* UID:UID*/})
+            const user = await knex('user').select(['id, username, email']).where("email", "=", email)
+            res.status(201).send(user);
+        }
+    })    
 
     
 
@@ -134,12 +146,12 @@ function setupServer() {
     //     // Edit user data depends on amendment Type
     // });
 
-    app.delete('/api/user/', (req, res)=> {
+    app.delete('/api/user/:id', (req, res)=> {
         // Delete given user details
         const id = req.params.id;
 
     })
-
+    
     /**
      * Cat - a.k.a Categories
      */
