@@ -3,7 +3,6 @@ import React, {useState, useEffect, Link} from 'react';
 import './Button.css';
 
 
-
 export default function Button ({btnClassName, setValue, btntype, htmlFor, onClick, onSubmit}){
 
     // if you want to use a different className for the button for a different css style

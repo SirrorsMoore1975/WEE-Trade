@@ -103,7 +103,6 @@ export default function Form (){
     */
    
 
-
     const getCatData = async () => {
         const result = await axios.get("/api/cat")
         console.log("😠",result);
@@ -229,7 +228,7 @@ export default function Form (){
                 <input type="text" className="price" value={cost} onChange={(e) => {setCost(e.target.value)}} placeholder="Name Your Price"></input><br />
 
 {/** The Fantastic Button */}
-
+<
                 <Button htmlFor="SubmitForm" btntype="submit" setValue="Submit Post" />
 
             </form>

@@ -101,7 +101,10 @@ function setupServer() {
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
 
-        const {username, email, address, UID} = req.body
+
+        // const {username, email, address, UID} = req.body
+
+        const {username, email, address, UID} = req.body;
 
         // const username = req.body.username;
         // const email = req.body.email;

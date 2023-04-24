@@ -17,6 +17,7 @@ function SignUp(){
     const [UID, setUID] = useState("");
     
 
+
     const {createUser, sendCreatedUID} = UserAuth();
     const navigate = useNavigate();
 
@@ -52,7 +53,11 @@ function SignUp(){
 
 
 
+// prepare payload to check if email existed
+    // if existed don't proceed, somehow inform user email existed
+    // else, create account, new id 
 
+    
 
 // prepare payload to check if email existed
     // if existed don't proceed, somehow inform user email existed
