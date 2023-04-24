@@ -14,35 +14,6 @@ function SignIn(){
     const [attemptedLogin, setAttemptedLogin] = useState(false);
     // const loginFailed = useRef(false);
 
-
-    const { loginUser, user } = UserAuth();
-    const navigate = useNavigate();
-
-    useEffect(()=>{
-        
-        setAttemptedLogin(false);
-    }, [email, password]);
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        
-        try {
-            const response = await loginUser(email, password);
-            console.log("🍊",response);
-             
-            navigate('/');
-        } catch (err) {
-            console.log(err);
-            setAttemptedLogin(true)
-            
-        }
-    };
-
-    
-    
-
-
-
     const { loginUser, user } = UserAuth();
     const navigate = useNavigate();
 
