@@ -101,9 +101,8 @@ function setupServer() {
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
 
-        // const {username, email, address, UID} = req.body
+        const {username, email, address, UID} = req.body
 
-        const {username, email, address, UID} = req.body;
         // const username = req.body.username;
         // const email = req.body.email;
         // const address = req.body.address;
@@ -119,7 +118,9 @@ function setupServer() {
             res.send(result)
         }
         
+
 /*
+
 
 
         await knex('user').insert({username:username, email:email, address:address, UID:UID})
@@ -177,12 +178,14 @@ function setupServer() {
     //     // Edit user data depends on amendment Type
     // });
 
+
     app.delete('/api/user/:id', (req, res)=> {
+
         // Delete given user details
         const id = req.params.id;
 
     })
-    
+
     /**
      * Cat - a.k.a Categories
      */
@@ -231,11 +234,13 @@ function setupServer() {
         // print post id
     })
     
+
     app.post('/api/posts/', async (req,res)=> {
         // add new post, grab seller user id, img_url, describition, categories, condition, cost, date and time of issue 
         // check data consistency
         const {seller_id, title, img_url, desc, categories, condition, post_date, post_timestamp, price} = req.body
         // const userIdOrUN = req.params.userIdOrUN;
+
         let testUser;
         if(isNaN(userIdOrUN)){
             // Check if username existed- if it does proceed

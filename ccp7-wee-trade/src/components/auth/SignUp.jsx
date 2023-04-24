@@ -52,6 +52,8 @@ function SignUp(){
 
 
 
+
+
 // prepare payload to check if email existed
     // if existed don't proceed, somehow inform user email existed
     // else, create account, new id 
@@ -77,16 +79,20 @@ return (
             <br />
             <input htmlFor="signup-email"  
             type="text" placeholder="Your email: example@example.com" 
+
             value={email} onChange={(e) => {setEmail(e.target.value)}} required={true}/>
                 {attemptedNoEmail ? <p className="warning">Please specify your email</p> : null}
+
                 <br />
             <label htmlFor="signup-pw" >Your Password:</label><br />
             <input htmlFor="signup-pw" 
             type="password" 
             value={password} 
             onChange={(e) => {setPassword(e.target.value)}} 
+
             placeholder="A Strong Password" required={true}></input>
             {attemptedNoPW ? <p className="warning">Password cannot be empty</p> : null}
+
             <br />
             <label htmlFor="signup-address" >Your Address:</label>
             <br />

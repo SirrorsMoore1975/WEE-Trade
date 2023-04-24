@@ -45,6 +45,7 @@ function Home(){
         
 
     // }, [])
+
     
     // const checkInUserDetail = () => {
     //     const result = axios.post(`/api/user/checkCredential`, checkIn)
@@ -122,7 +123,9 @@ function Home(){
              <div>
             <div className='row2'>
                 
+
                 <SideBar />
+
 
                 <div className='column2'>
                     <div className="post-area">

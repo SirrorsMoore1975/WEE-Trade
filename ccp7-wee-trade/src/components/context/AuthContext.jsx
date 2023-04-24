@@ -27,6 +27,7 @@ export const AuthContextProvider = ({children}) => {
             console.log("💋",result, typeof result);
     }
 
+
     const createUser = async (username, email, address, password) => {
         // const userCred = await createUserWithEmailAndPassword(auth,email,password);
         // console.log(userCred);
@@ -40,6 +41,7 @@ export const AuthContextProvider = ({children}) => {
         // check result.data -- if user existed { create user should fail }
         // else {database record user; allow user creation at firebase}
         return createUserWithEmailAndPassword(auth,email,password);
+
     };
     const loginUser = async (email, password) => {
         // const userCred = await signInWithEmailAndPassword(auth, email, password);
