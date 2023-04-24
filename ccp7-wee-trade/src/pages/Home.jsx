@@ -16,6 +16,7 @@ import { UserAuth } from './../components/context/AuthContext';
 function Home(){
     const { createUserInDatabase, user } = UserAuth();
 
+    const [returnData, setReturnData] = useState([]);
     // const [username, setUsername] = useState()
 
     // First time login success, homepage should:
@@ -29,8 +30,19 @@ function Home(){
 
     const navigate = useNavigate();
 
-    // useEffect(()=>{
-    //     handleAccCreate();
+    // useEffect(async ()=>{
+    //     const payload = {
+    //         email: user.email,
+    //         UID: user.uid,
+    //         // address: address
+    //         // username: username
+    //     }
+
+    //     const response = await axios.post(`/api/user`, payload);
+    //     // setReturnData([...returnData, response.data])
+    //     console.log("🤑",response.data);
+    //         // the return payload should give username too -for  future me
+        
 
     // }, [])
     

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebase';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import {UserAuth} from '../context/AuthContext'
 import './SignUp.css';
@@ -13,43 +12,31 @@ function SignUp(){
     const [address, setAddress] = useState('');
     const [username, setUsername ] = useState('');
     const [attemptedLogin, setAttemptedLogin] = useState(false);
-    const [attemptedNoEmail, setAttemptedNoEmail] =useState(false);
-    const [attemptedNoPW, setAttemptedNoPW] = useState(false);
+    const [attemptedNoPW, setAttemptedNoPW ] = useState('')
+    const [attemptedNoEmail, setAttemptedNoEmail ] = useState('')
+    
     
 
-    const {createUser} = UserAuth();
+    const {createUser, checkUserExistance} = UserAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
         
         setAttemptedLogin(false);
     }, [email, password])
-    // useEffect(() => {
-    //     setAttemptedNoEmail(false);
-    // },[email])
-    // useEffect(()=>{
-    //     setAttemptedNoPW(false);
-    // },[password])
-    if(!username){
-        setUsername("anonymous");
-    }
-    if(!address){
-        setAddress("N/A");
-    }
+    
     const handleSingUp = async (e) => {
+        // const payload = {
+        //     username:username,
+        //     email: email,
+        //     address:address,
+        //     UID:UID
+        // }
         e.preventDefault();
         try{
-            // if(!email){ 
-            //     setAttemptedNoEmail(true);
-            //     throw new Error("Email cannot be empty");
-                
-            // }
-            // if(!password) {
-            //     setAttemptedNoPW(true);
-            //     throw new Error("Password cannot be empty");
-            // }
-            // send to authContext -> firebase
-            await createUser(email, password, /* username, address */);
+            
+            const response = await createUser(email, password);
+            // await checkUserExistance(username, email, address)
             navigate('/');
             
         } catch (err){
@@ -58,13 +45,7 @@ function SignUp(){
         }
     };
 
-// const handleSignUp = async (e) => {
-//     e.preventDefault();
-//     const userCred = await createUserWithEmailAndPassword(auth, email, password);
-//     console.log("🧒",userCred);
-// }
-//  const response = createUser;
-//  console.log("💥",response)
+
 
 // prepare payload to check if email existed
     // if existed don't proceed, somehow inform user email existed
