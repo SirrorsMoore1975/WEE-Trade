@@ -14,7 +14,7 @@ export const AuthContextProvider = ({children}) => {
     const [UID, setUID] = useState("");
     
 
-    const createUser = async (email, password, /*username, address */) => {
+    const createUser = async (email, password) => {
         // const userCred = await createUserWithEmailAndPassword(auth,email,password);
         // console.log(userCred);
         // console.log("👽userUID", userCred.uid);
@@ -48,18 +48,13 @@ export const AuthContextProvider = ({children}) => {
         return signOut(auth);
     }
 
-    const createUserInDatabase = async (username, email, address) =>{
-        if(!UID){
-            UID="";
-        }
+    const checkUserExistance = async (username, email, address) =>{
+        
         const payload={username, email, address, UID}
-        const result = await axios.post("/api/user/create", payload)
-        try{
-            console.log("💋",result.data);
-        } catch (err){
-            console.error(err)
-        }
-    }
+        const result = await axios.post("/api/user/", payload)
+        console.log("💋",result.data);
+        return result.data;
+    } 
     
     useEffect(() => {
         const authenticateUser = onAuthStateChanged(auth, (currentUser) => {
@@ -73,9 +68,8 @@ export const AuthContextProvider = ({children}) => {
     
 
 
-
     return (
-        <UserContext.Provider value={{createUser, loginUser, user, logOut, createUserInDatabase}}>
+        <UserContext.Provider value={{createUser, loginUser, user, logOut, checkUserExistance}}>
             {children}
         </UserContext.Provider>
     )

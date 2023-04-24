@@ -100,16 +100,35 @@ function setupServer() {
         // for(let i =0;i<length; i++){}
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
-        const {username, email, address, UID} = req.body
+
+        // const {username, email, address, UID} = req.body
+
+        const {username, email, address, UID} = req.body;
         // const username = req.body.username;
         // const email = req.body.email;
         // const address = req.body.address;
         // const UID = req.body.UID;
         // console.log("😉",typeof username);
+        const testEmail = knex('user').where({"email": email}).timeout(1500);
+        if(testEmail.length){ // check if email existed
+            const reply = await knex('user').select('id', 'username')
+            res.send(reply)
+        } else { // email not existed
+            const result = await knex('user').insert({username, email, address, UID}) // address and username - furture expends
+             
+            res.send(result)
+        }
         
+/*
+
+
         await knex('user').insert({username:username, email:email, address:address, UID:UID})
         const user = await knex('user').select(['username','email']);
         res.status(201).send(user);
+
+
+*/
+
         // .then(() => { knex.select().from('user').then((user) => {
         //     res.send(user)
         // })
@@ -130,17 +149,17 @@ function setupServer() {
         const {username, email, address, UID} = req.body;
         // check UID existed, if yes res.send should send error user existed
         // else, res.send should add row and give user_id to the page
-        const result = await knex('user').where("UID", UID)
+        const result = await knex('user').where({"UID": UI}).select('id')
         if(result.length){
             res.status(400).send("user existed or internal error")
-        } else {
+        } else { // what if it has entries? they were beta unreal user, just ignore them - should run seed 000 first? 
             await knex('user').insert({username:username, email:email, address:address, UID:UID})
-            const user = await knex('user').select(['id, username, email']).where("email", "=", email)
+            const user = await knex('user').select(['id, username, email']).where({"email": email})
             res.status(201).send(user);
         }
     })    
 
-    
+    app.patch('/api/user')
 
     // app.post('/api/user/:idEmailUsername/:amendmentType/:amendTo', (req,res) => {
     //     // Edit user data depends on amendment Type

@@ -14,18 +14,21 @@ function SignIn(){
     const [attemptedLogin, setAttemptedLogin] = useState(false);
     // const loginFailed = useRef(false);
 
-    const { loginUser } = UserAuth();
+    const { loginUser, user } = UserAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
         
         setAttemptedLogin(false);
-    }, [email, password])
+    }, [email, password]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        
         try {
-            await loginUser(email, password);
+            const response = await loginUser(email, password);
+            console.log("🍊",response);
+             
             navigate('/');
         } catch (err) {
             console.log(err);
