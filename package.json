@@ -12,7 +12,8 @@
     "make:seed": "knex seed:make",
     "seed": "knex seed:run",
     "down:migration": "knex migrate:down",
-    "list:migration": "knex migrate:list"
+    "list:migration": "knex migrate:list",
+    "build": "npm install && npm run migrate && npm run seed && cd ccp7-wee-trade && npm install && npm run build"
   },
   "repository": {
     "type": "git",
