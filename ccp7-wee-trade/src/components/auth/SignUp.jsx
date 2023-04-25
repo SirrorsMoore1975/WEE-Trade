@@ -36,7 +36,7 @@ function SignUp(){
         try{
             
             await createUser(email, password);
-            await makeUser(username,email,address)
+            await makeUser(username,email,address);
             navigate('/');
             
         } catch (err){

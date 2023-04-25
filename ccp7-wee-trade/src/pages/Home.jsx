@@ -14,7 +14,7 @@ import { UserAuth } from './../components/context/AuthContext';
 
 
 function Home(){
-    const { sendCreatedUID, user } = UserAuth();
+    const { user } = UserAuth();
 
     const [returnData, setReturnData] = useState([]);
     // const [username, setUsername] = useState()
