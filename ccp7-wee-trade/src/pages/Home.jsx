@@ -61,7 +61,7 @@ function Home(){
     },[])
     useEffect(()=>{
         console.log("userList obtain",userList);
-    },[userList])
+    },[user.uid])
 
 
     const getUserList = async () =>{
@@ -146,11 +146,11 @@ function Home(){
                     </div>
                     
                     <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
-                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/v4FtgK3/GPU-Unknown-Unit02.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
                     </div>
-                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
-                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
-                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/WG0Qw9n/MB-ATX-basic03.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/NnGtqMb/PSU-Unkonwn-Unit-basic04.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/vjcwnwj/MB-ATX-basic02.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
                     </div>
             </div>
             </div>

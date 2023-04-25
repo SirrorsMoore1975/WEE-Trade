@@ -1,11 +1,13 @@
 const express = require('express');
 const knex = require('../db/index');
+const path = require('path');
 
 function setupServer() {
     const app = express();
 
     app.use(express.json());
-
+    app.use(express.static(path.join(__dirname, 'public')));
+    
     app.get('/hello', (req, res) => {
         res.send('🌏world');
     }); 

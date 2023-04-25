@@ -20,7 +20,7 @@ export default function NavBar(){
 
     useEffect(()=>{
         getUserList();
-    },[])
+    },[userList])
     const getUserList = async () =>{
         const payload = {
             email:user.email,
