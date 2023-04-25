@@ -13,43 +13,35 @@ export const AuthContextProvider = ({children}) => {
     // const [isLogin, setIsLogin] = useState(false);
     const [UID, setUID] = useState("");
     const [UID_createUser, setUID_createUser] = useState("")
+    const [userMade, getUserMade] = useState("")
     
-    const makeUser = async (username, email, address, UID )=>{
-        const payload =  {
+    const makeUser = async (username, email, address)=>{
+        const payload = {
             username,
             email, 
             address, 
-            UID
+            UID: UID || UID_createUser,
         }
         
         const result = await axios.post("/api/user/", payload).catch(err => console.log(err))
-        
+            console.log("❕",result.data);
             console.log("💋",result, typeof result);
+            getUserMade(result.data)
     }
 
 
-    const createUser = async (username, email, address, password) => {
-        // const userCred = await createUserWithEmailAndPassword(auth,email,password);
-        // console.log(userCred);
-        // console.log("👽userUID", userCred.uid);
-        
-        // return userCred;
-
-        makeUser(username, email, address, UID_createUser)
+    const createUser = async (email, password) => {
         
         
-        // check result.data -- if user existed { create user should fail }
-        // else {database record user; allow user creation at firebase}
+        // await makeUser(username, email, address, UID_createUser);
+        
+        
         return createUserWithEmailAndPassword(auth,email,password);
+        
 
     };
     const loginUser = async (email, password) => {
-        // const userCred = await signInWithEmailAndPassword(auth, email, password);
-        //     console.log("👿",userCred);
-        //     console.log("🦎",userCred.user)
-        //     console.log("🥶userUID", userCred.uid);
-        //     // console.log("👿",user);
-        //     return userCred;
+        
         return signInWithEmailAndPassword(auth, email, password);
     }
 
@@ -57,13 +49,7 @@ export const AuthContextProvider = ({children}) => {
         return signOut(auth);
     }
 
-    // const checkUserExistance = async (username, email, address) =>{
-        
-    //     const payload={username, email, address, UID}
-    //     const result = await axios.post("/api/user/", payload)
-    //     console.log("💋",result.data);
-    //     return result.data;
-    // } 
+    
 
     const sendCreatedUID = (string) => {
         setUID_createUser(string);
@@ -83,7 +69,7 @@ export const AuthContextProvider = ({children}) => {
 
 
     return (
-        <UserContext.Provider value={{createUser, loginUser, user, logOut, sendCreatedUID}}>
+        <UserContext.Provider value={{createUser, loginUser, user, logOut, sendCreatedUID, makeUser, userMade}}>
             {children}
         </UserContext.Provider>
     )
