@@ -24,7 +24,7 @@ function Home(){
     // Create a new user in user table (Send payload to db)
     // 
 
-    const [userList, setUserList] = useState([]);
+    const [userList, setUserList] = useState("");
 
     const [postfeed, setPostfeed] = useState([]);
     // const [isLogin, setIsLogin ] = useState('true');
@@ -54,26 +54,33 @@ function Home(){
 
     //     }
     // }
+    const [user_id, setUserId] = useState('');
 
     useEffect(()=>{
-        getUserId();
+        getUserList();
     },[])
     useEffect(()=>{
         console.log("userList obtain",userList);
     },[userList])
 
 
-    const getUserId = async () =>{
+    const getUserList = async () =>{
         const payload = {
             email:user.email,
-                // UID:user.uid
+            UID:user.uid
         }
         const res = await axios.post('/api/user/init', payload)
 
             
         // .then(response => console.log(response)).catch(err => console.error(err))
         console.log("🦓",res.data);
-        setUserList([...res.data, userList]);
+        setUserList(res.data);
+        
+        res.data.forEach((userData) => {
+            if(user.email === userData.email){
+                setUserId(userData.id)
+            }
+        })
         
     }
 
@@ -136,7 +143,7 @@ function Home(){
 
                 <div className='column2'>
                     <div className="post-area">
-
+                    <p>your current user_id is {user_id}</p>
                     </div>
                     <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
                     

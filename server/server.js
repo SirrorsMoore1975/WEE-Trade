@@ -139,12 +139,12 @@ function setupServer() {
             // knex('user').insert({address:address})
     //  ])
     
-        
+   
         // res.send({message: "Payload has successfully received", isUploaded: true})
     });
 
     app.post('/api/user/init', async (req, res)=>{
-        const {email} = req.body;
+        const {email, UID} = req.body;
         // runs everytime it render Home
         // if user table doesn't have UID, add UID to user table
         // const testEmail = knex('user').where({"email": email}).select(['id','email', 'UID'])
@@ -161,7 +161,7 @@ function setupServer() {
             }
         })
         /*const response = await knex('user').where('email', email)*/
-        res.status(200).send(reply);
+        res.status(200).send(result);
 
         /* res.status(200).send(response); */
         
