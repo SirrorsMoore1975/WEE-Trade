@@ -24,7 +24,7 @@ function Home(){
     // Create a new user in user table (Send payload to db)
     // 
 
-
+    const [userList, setUserList] = useState([]);
 
     const [postfeed, setPostfeed] = useState([]);
     // const [isLogin, setIsLogin ] = useState('true');
@@ -57,17 +57,23 @@ function Home(){
 
     useEffect(()=>{
         getUserId();
-    })
+    },[])
+    useEffect(()=>{
+        console.log("userList obtain",userList);
+    },[userList])
+
+
     const getUserId = async () =>{
-            const payload = {
-                email:user.email,
+        const payload = {
+            email:user.email,
                 // UID:user.uid
-            }
-            const res = await axios.post('/api/user/init', payload)
+        }
+        const res = await axios.post('/api/user/init', payload)
 
             
-            // .then(response => console.log(response)).catch(err => console.error(err))
-            console.log("🦓",res);
+        // .then(response => console.log(response)).catch(err => console.error(err))
+        console.log("🦓",res.data);
+        setUserList([...res.data, userList]);
         
     }
 

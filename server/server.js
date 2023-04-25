@@ -95,9 +95,7 @@ function setupServer() {
         console.log("💣",req.body);
         // const inputData = {username:username, email: email, address:address}
         // const { username, email, address } = req.body;
-        //let length;
-        // {username, email, address}
-        // for(let i =0;i<length; i++){}
+        
         // if username / email already existed, user should be informed to amend it/them. res.send(400) forbidden
         // else if username and/or email are unique, write to table user
 
@@ -106,19 +104,15 @@ function setupServer() {
 
         const {username, email, address, UID} = req.body;
 
-        // const username = req.body.username;
-        // const email = req.body.email;
-        // const address = req.body.address;
-        // const UID = req.body.UID;
-        // console.log("😉",typeof username);
         const testEmail = knex('user').where({"email": email}).timeout(1500);
         if(testEmail.length){ // check if email existed
-            const reply = await knex('user').select(['id', 'username'])
-            res.send(reply)
+            const reply = await knex('user').select(['id', 'username',"email"])
+            res.status(201).send(reply)
         } else { // email not existed
-            const result = await knex('user').insert({username, email, address, UID}) // address and username - furture expends
-             
-            res.send(result)
+            await knex('user').insert({username, email, address, UID}) // address and username - furture expends
+            const user = await knex('user').select(["id",'username','email']);
+            res.status(201).send(user);
+            // res.send(result)
         }
         
 
@@ -160,9 +154,17 @@ function setupServer() {
         
         //  await knex('user').where({"email":email}).insert({"username":username,"email":email,"address":address, "UID":UID});
         //  const response = await knex('user').select('*')
+        const result = await knex('user').select(['id', "username", "email", "UID"])
+        const reply = result.map((object)=>{
+            if(object["email"] === email){
+                return object;
+            }
+        })
+        /*const response = await knex('user').where('email', email)*/
+        res.status(200).send(reply);
+
+        /* res.status(200).send(response); */
         
-        const response = await knex('user').where('email', email)
-        res.status(200).send(response);
         /*
         const result = await knex('user').where({"UID": UID}).select(['id'])
         if(result.length){

@@ -18,7 +18,7 @@ function SignUp(){
     
 
 
-    const {createUser, sendCreatedUID} = UserAuth();
+    const {createUser, makeUser} = UserAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -31,18 +31,12 @@ function SignUp(){
     // },[UID])
 
     const handleSingUp = async (e) => {
-        // const payload = {
-        //     username:username,
-        //     email: email,
-        //     address:address,
-        //     UID:UID
-        // }
+        
         e.preventDefault();
         try{
             
-            const response = await createUser(username, email, address, password);
-            // setUID(response.uid)
-            // await sendCreatedUID(UID)
+            await createUser(email, password);
+            await makeUser(username,email,address)
             navigate('/');
             
         } catch (err){
@@ -109,7 +103,7 @@ return (
             <button type="submit">Submit</button>
         </form>
         {/* <p><Link to="/">Home</Link></p> */}
-        <p><Link to="/signin"></Link></p>
+        <p>Already Have Account? <Link to="/signin">Sign In</Link></p>
     </div>
 );
 }

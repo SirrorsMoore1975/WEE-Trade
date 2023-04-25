@@ -26,8 +26,8 @@ function SignIn(){
         e.preventDefault();
         
         try {
-            const response = await loginUser(email, password);
-            console.log("🍊",response);
+            await loginUser(email, password);
+            // console.log("🍊",response);
              
             navigate('/');
         } catch (err) {
@@ -41,8 +41,8 @@ function SignIn(){
     
 
 
-    const response = loginUser;
-    console.log("🍌",response);
+    // const response = loginUser;
+    // console.log("🍌",response);
     // const handleSignIn = async (e) => {
     //     e.preventDefault();
     //     const userCred = await signInWithEmailAndPassword(auth, email, password);
