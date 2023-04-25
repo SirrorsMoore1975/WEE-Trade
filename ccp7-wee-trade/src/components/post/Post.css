@@ -8,6 +8,19 @@
     justify-content: space-around;
     align-items: center;
     width: 400px;
+    text-overflow:ellipsis;
+    overflow: hidden;
+  }
+
+  .postid {
+    text-align:left;
+  }
+
+  .cost-box, .desc-box {
+    text-align:right;
+  }
+  .seller-detail {
+    object-fit: contain;
   }
   img {
     width: auto;

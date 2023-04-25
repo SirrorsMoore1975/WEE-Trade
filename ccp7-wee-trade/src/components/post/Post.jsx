@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './Post.css';
-
+import Button from './..//button/Button'
 
 
 
 export default function Post (props ){
-    const {className, seller, post_id, postTitle,img_url, img_alt, desc, amount, hasSold} = props;
+    const {className, seller, post_id, postsTitle ,img_url, img_alt, desc, amount, hasSold} = props;
 
-    const [ classes, setClassName ] = useState("");
-    const [ postsTitle, setPostsTitle ] = useState ("");
+    // const [ classes, setClassName ] = useState("");
+    // const [ postsTitle, setPostsTitle ] = useState ("");
     const [ isSeller, setIsSeller ] = useState(true);
     // const [ dateFormate, setDateFormate ] = useState("");
     // const [resultDate, setResultDate] = useState("");
@@ -48,21 +48,21 @@ export default function Post (props ){
     // }
     
 
-    const getClassesName = () => {
-        if(!className){
-            setClassName("defaultClassName");
-        } else {
-            setClassName(className);
-        }
-    }
+    // const getClassesName = () => {
+    //     if(!className){
+    //         setClassName("defaultClassName");
+    //     } else {
+    //         setClassName(className);
+    //     }
+    // }
 
-    const getPostsTitle = () => {
-        if(!postTitle){
-            setPostsTitle("defaultPostsTitle");
-        } else {
-            setPostsTitle(postTitle)
-        }
-    }
+    // const getPostsTitle = () => {
+    //     if(!postTitle){
+    //         setPostsTitle("defaultPostsTitle");
+    //     } else {
+    //         setPostsTitle(postTitle)
+    //     }
+    // }
     
     
     const handleBuyNow =  async () => {
@@ -80,10 +80,11 @@ export default function Post (props ){
     return (
         <>
     <div className="post-card" 
-    onLoad={() => {handleSetHasImage(); getClassesName(); getPostsTitle();} }>
+    onLoad={() => {handleSetHasImage();} }>
         {/* {this is where the post should look} */}
-        <div className={classes}>
-            <h2>{post_id}{":"}{postsTitle}{classes}</h2>
+        <div className={className}>
+            <p className="postid">Post ID:{post_id}</p>
+            <h2>{postsTitle}</h2>
             <p className="sellerDetails">{`seller:${seller.name} (${seller.id})`}</p>
             
             <div>
@@ -91,13 +92,13 @@ export default function Post (props ){
             {hasImage ? <img src={img_url} alt={img_alt}/> : <div></div>}
             </div>
             
-            <div className="desc-box" type="textarea">{desc}</div>
+            <div className="desc-box">{desc}</div>
             <p className="cost-box">${amount}</p>
             <form htmlFor="acceptance">
             
             {isSeller ? <div><input type="checkbox"></input>{"Remove Post?"}</div> : null}
             
-            {hasSold ? <button htmlFor="acceptance" disabled={true}>ALREADY SOLD</button> : <button htmlFor="acceptance" onSubmit={(e) => {e.defaultPrevented(); handleBuyNow();} } disabled={false}>BUY NOW</button>}
+            {hasSold ? <button htmlFor="acceptance" disabled={true}>ALREADY SOLD</button> : <Button htmlFor="acceptance" onSubmit={(e) => {e.defaultPrevented(); handleBuyNow();} } disabled={false} setValue={"BUY NOW"}></Button>}
             </form>
         </div>
     </div>
