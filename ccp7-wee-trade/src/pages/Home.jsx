@@ -61,7 +61,7 @@ function Home(){
     },[])
     useEffect(()=>{
         console.log("userList obtain",userList);
-    },[userList])
+    },[user.uid])
 
 
     const getUserList = async () =>{
