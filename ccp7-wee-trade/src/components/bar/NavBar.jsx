@@ -1,20 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import Button from './../button/Button';
 
 
 import {UserAuth} from '../context/AuthContext';
 
-
-import './NavBar.css'
+import axios from 'axios';
+import './NavBar.css';
 
 
 
 export default function NavBar(){
-    
+    const [user_id, setUserId] = useState('');
+    const [userList, setUserList] = useState("");
+
     const navigate = useNavigate();
     const { user, logOut } = UserAuth();
+
+    useEffect(()=>{
+        getUserList();
+    },[])
+    const getUserList = async () =>{
+        const payload = {
+            email:user.email,
+            UID:user.uid
+        }
+        const res = await axios.post('/api/user/init', payload)
+
+            
+        // .then(response => console.log(response)).catch(err => console.error(err))
+        console.log("🦓",res.data);
+        setUserList(res.data);
+        
+        res.data.forEach((userData) => {
+            if(user.email === userData.email){
+                setUserId(userData.id)
+            }
+        })
+        
+    }
+
+
     // LogOut
     const handleLogOut = async () => {
         try{
@@ -52,7 +79,8 @@ export default function NavBar(){
         <div className="loginStatus">
         
 
-        <dir className="LoggedIn">You Are logged in as {user.email}</dir>
+        <div className="LoggedIn">You Are logged in as {user.email}</div>
+        <div>Your current id: {user_id}</div>
         <div>Welcome {user.email}</div>
         
         <Button setValue="Log Out" onClick={handleLogOut}></Button>

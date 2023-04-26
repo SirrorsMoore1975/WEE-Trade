@@ -14,7 +14,7 @@ import { UserAuth } from './../components/context/AuthContext';
 
 
 function Home(){
-    const { sendCreatedUID, user } = UserAuth();
+    const { user } = UserAuth();
 
     const [returnData, setReturnData] = useState([]);
     // const [username, setUsername] = useState()
@@ -24,7 +24,7 @@ function Home(){
     // Create a new user in user table (Send payload to db)
     // 
 
-
+    const [userList, setUserList] = useState("");
 
     const [postfeed, setPostfeed] = useState([]);
     // const [isLogin, setIsLogin ] = useState('true');
@@ -54,20 +54,33 @@ function Home(){
 
     //     }
     // }
+    const [user_id, setUserId] = useState('');
 
     useEffect(()=>{
-        getUserId();
-    })
-    const getUserId = async () =>{
-            const payload = {
-                email:user.email,
-                // UID:user.uid
-            }
-            const res = await axios.post('/api/user/init', payload)
+        getUserList();
+    },[])
+    useEffect(()=>{
+        console.log("userList obtain",userList);
+    },[userList])
+
+
+    const getUserList = async () =>{
+        const payload = {
+            email:user.email,
+            UID:user.uid
+        }
+        const res = await axios.post('/api/user/init', payload)
 
             
-            // .then(response => console.log(response)).catch(err => console.error(err))
-            console.log("🦓",res);
+        // .then(response => console.log(response)).catch(err => console.error(err))
+        console.log("🦓",res.data);
+        setUserList(res.data);
+        
+        res.data.forEach((userData) => {
+            if(user.email === userData.email){
+                setUserId(userData.id)
+            }
+        })
         
     }
 
@@ -114,7 +127,7 @@ function Home(){
 
     return (
         
-        // <div className="table">
+        <div className="table">
             <div className="taskbar-top">
                 <Panel />
              <div className="NarBar">
@@ -130,10 +143,14 @@ function Home(){
 
                 <div className='column2'>
                     <div className="post-area">
-
                     </div>
-                    <Post seller={{id:"1367", name:"Christian" }} desc="SirrorsMoore1975 recommended NVME after HDD their new annoced GPU" hasSold={true}></Post>
                     
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    </div>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
+                    <Post post_id="1881" seller={{id:"1600", name:"Stack"}} amount="6000" desc="Best Deal: Brand New AMD AMD6 CPU, new tech optimized with DDR7 RAM, Overclockable" img_url="https://i.ibb.co/nb3JFNy/CPU-AMD-RYZEN5-basic01.png" postsTitle="AMD5 CPU next Gen AMD6" ></Post>
                     </div>
             </div>
             </div>
