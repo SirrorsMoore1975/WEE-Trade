@@ -56,7 +56,7 @@
 
   "dependencies": {
 
-    "cors": "^2.7.1",
+    "cors": "^2.8.5",
 
     "dotenv": "^16.0.3",
 

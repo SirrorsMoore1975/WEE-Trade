@@ -8,8 +8,15 @@ function setupServer() {
 
     app.use(express.json());
     app.use(express.static(path.join(__dirname, 'public')));
-    app.use(cors());
+
+    const corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200,
+    }
+
+    app.use(cors(corsOptions));
     
+
     app.get('/hello', (req, res) => {
         res.send('🌏world');
     }); 
