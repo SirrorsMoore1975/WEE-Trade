@@ -10,7 +10,11 @@
 
   "scripts": {
 
-    "start": "node server/index.js",
+    "server": "node server/index.js",
+
+    "client": "cd ccp7-wee-trade && npm run start",
+
+    "start": "concurrently \"npm run server\" \"npm run client\"",
 
     "dev": "nodemon server/index.js",
 
@@ -52,6 +56,8 @@
 
   "dependencies": {
 
+    "cors": "^2.7.1",
+
     "dotenv": "^16.0.3",
 
     "express": "^4.18.2",
@@ -71,6 +77,8 @@
   "devDependencies": {
 
     "@flydotio/dockerfile": "^0.2.16",
+
+    "concurrently": "^8.2.0",
 
     "nodemon": "^2.0.22"
 

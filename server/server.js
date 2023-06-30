@@ -1,12 +1,14 @@
 const express = require('express');
 const knex = require('../db/index');
 const path = require('path');
+const cors = require('cors');
 
 function setupServer() {
     const app = express();
 
     app.use(express.json());
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(cors());
     
     app.get('/hello', (req, res) => {
         res.send('🌏world');
@@ -37,6 +39,16 @@ function setupServer() {
     /**
      *  user route
      */
+
+    app.get(["/", "/:name"], (req, res) =>{
+        greeting = "<h1>Hello From Node on Fly!</h1>";
+        flyName = req.params.name;
+        if(flyName){
+            res.send(greeting + "</br> and hello to " + flyName);
+        } else {
+            res.send(greeting);
+        }
+    })
     app.get('/api/user', async (req, res) => {
         // should return whole list of user, 
         // check if limit query used
