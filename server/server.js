@@ -1,22 +1,12 @@
 const express = require('express');
 const knex = require('../db/index');
 const path = require('path');
-const cors = require('cors');
 
 function setupServer() {
     const app = express();
-    const corsOptions = {
-        origin: 'http://localhost:3000',
-        optionsSuccessStatus: 200,
-    };
-    const middleware = cors(corsOptions);
-    // const middleware = cors();
 
     app.use(express.json());
     app.use(express.static(path.join(__dirname, 'public')));
-
-    app.use(express.urlencoded({ extended: false }));
-    app.use(middleware);
 
     app.get('/hello', (req, res) => {
         res.send('🌏world');
