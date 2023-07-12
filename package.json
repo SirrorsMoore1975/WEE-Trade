@@ -10,7 +10,13 @@
 
   "scripts": {
 
-    "start": "node server/index.js",
+    "server": "node server/index.js",
+
+    "client": "cd ccp7-wee-trade && npm run start",
+
+    "start": "concurrently \"npm run test\" \"npm run client\"",
+
+    "test": "node --trace-deprecation server/index.js",
 
     "dev": "nodemon server/index.js",
 
@@ -51,6 +57,8 @@
   "homepage": "https://github.com/SirrorsMoore1975/WEE-Trade#readme",
 
   "dependencies": {
+
+    "concurrently": "^8.2.0",
 
     "dotenv": "^16.0.3",
 
